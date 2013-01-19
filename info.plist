@@ -39,6 +39,28 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>A4DD68F6-51A3-4884-B34A-573AAA1EBFFF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>ADBCF76B-C47B-4165-A2B6-BA5926D8B5F0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A4DD68F6-51A3-4884-B34A-573AAA1EBFFF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<array>
 			<dict>
@@ -82,28 +104,58 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>63</integer>
+				<integer>0</integer>
 				<key>keyword</key>
-				<string>sly product</string>
-				<key>script</key>
-				<string>require_once('Sly.php');
-$Sly = new Sly();
-echo $Sly-&gt;results_feed($Sly-&gt;products("{query}"));</string>
+				<string>sly test</string>
 				<key>subtext</key>
-				<string>What do you want to work on?</string>
-				<key>title</key>
-				<string>Switch Sprint.ly Product</string>
-				<key>type</key>
-				<integer>1</integer>
+				<string>Sly testing</string>
+				<key>text</key>
+				<string>Testing</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
+			<string>ADBCF76B-C47B-4165-A2B6-BA5926D8B5F0</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>require_once('Sly.php');
+
+$credentials = explode(" ", trim("{query}"));
+
+if(sizeof($credentials) != 2)
+  exit("ERROR: Please use format 'sly setup &lt;email&gt; &lt;api_key&gt;'");
+
+$config = array(
+  "email" =&gt; $credentials[0],
+  "api_key" =&gt; $credentials[1],
+  "product" =&gt; 0000
+);
+
+$Config = new Config($config);
+$Sly = new Sly($Config);
+$products = $Sly-&gt;products();
+
+if(sizeof($products) == 0)
+  exit("ERROR: Authentication failed for {$Sly-&gt;Config-&gt;email}. Please check your API key.");
+
+$Product = $products[0];
+$Sly-&gt;Config-&gt;update(array("product"=&gt;$Product-&gt;id));
+$Sly-&gt;Config-&gt;save();
+echo "Setup complete!\nActive product is ".$Product-&gt;name;</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -152,39 +204,45 @@ echo "Switched active product to ".$Product-&gt;name;</string>
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>63</integer>
 				<key>script</key>
-				<string>require_once('Sly.php');
-
-$credentials = explode(" ", trim("{query}"));
-
-if(sizeof($credentials) != 2)
-  exit("ERROR: Please use format 'sly setup &lt;email&gt; &lt;api_key&gt;'");
-
-$config = array(
-  "email" =&gt; $credentials[0],
-  "api_key" =&gt; $credentials[1],
-  "product" =&gt; 0000
-);
-
-$Config = new Config($config);
-$Sly = new Sly($Config);
-$products = $Sly-&gt;products();
-
-if(sizeof($products) == 0)
-  exit("ERROR: Authentication failed for {$Sly-&gt;Config-&gt;email}. Please check your API key.");
-
-$Product = $products[0];
-$Sly-&gt;Config-&gt;update(array("product"=&gt;$Product-&gt;id));
-$Sly-&gt;Config-&gt;save();
-echo "Setup complete!\nActive product is ".$Product-&gt;name;</string>
+				<string>COMMAND = "test"
+QUERY = "{query}"
+load 'run_command.rb'</string>
 				<key>type</key>
-				<integer>1</integer>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+			<string>A4DD68F6-51A3-4884-B34A-573AAA1EBFFF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>sly product</string>
+				<key>script</key>
+				<string>require_once('Sly.php');
+$Sly = new Sly();
+echo $Sly-&gt;results_feed($Sly-&gt;products("{query}"));</string>
+				<key>subtext</key>
+				<string>What do you want to work on?</string>
+				<key>title</key>
+				<string>Switch Sprint.ly Product</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
 		</dict>
 	</array>
 	<key>uidata</key>
@@ -208,6 +266,16 @@ echo "Setup complete!\nActive product is ".$Product-&gt;name;</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>A4DD68F6-51A3-4884-B34A-573AAA1EBFFF</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>ADBCF76B-C47B-4165-A2B6-BA5926D8B5F0</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<dict>

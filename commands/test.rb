@@ -1,0 +1,3 @@
+QUERY = ARGV[0]
+
+puts QUERY

@@ -2,17 +2,17 @@ require 'net/http'
 require 'json'
 
 class Sly::Connector
-  attr :api, :user_details
+  attr :api_url, :config
 
-  def initialize(user_details = {}, api_url="https://sprint.ly/api")
+  def initialize(config=false, api_url="https://sprint.ly/api")
     @api_url = api_url
-    @user_details = user_details
+    @config = !config ? Sly::Config.new : config
   end
 
   def authenticated_request(url)
     uri = URI(url)
     req = Net::HTTP::Get.new(uri.path)
-    req.basic_auth(@user_details[:email], @user_details[:password])
+    req.basic_auth(@config.email, @config.api_key)
 
     response = Net::HTTP.start(
                  uri.host,
@@ -34,7 +34,7 @@ class Sly::Connector
     authenticated_request(@api_url+"/products.json")
   end
 
-  def product_overview(id)
+  def product(id)
     authenticated_request(@api_url+"/products/#{id}.json")
   end
 
