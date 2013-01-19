@@ -1,0 +1,1 @@
+load "sprintly_details.rb"
