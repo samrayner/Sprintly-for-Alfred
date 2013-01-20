@@ -11,4 +11,24 @@ describe Sly::Config, integration: true do
       config.product_id.should == attributes[:product_id]
     end
   end
+
+  describe :save do
+    it "creates a file if one does not exist" do
+      raise "TODO"
+    end
+
+    it "writes correct json to the config file" do
+      raise "TODO"
+    end
+  end
+
+  describe :load do
+    it "prints an error if a config file doesn't exist" do
+      raise "TODO"
+    end
+
+    it "loads in config settings correctly" do
+      raise "TODO"
+    end
+  end
 end

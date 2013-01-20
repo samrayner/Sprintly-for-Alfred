@@ -1,5 +1,8 @@
+require 'JSON'
+
 class Sly::Config < Sly::Object
   attr_accessor :email, :api_key, :product_id
+  CONFIG_FILE = File.join(File.dirname(__FILE__), '../../config.json')
 
   def initialize(autoload=true)
     @email = @api_key = @product_id = nil
@@ -10,13 +13,19 @@ class Sly::Config < Sly::Object
   end
 
   def load
-    #TODO: load from json config file
-    load "sprintly_details.rb"
-    self.update({email:ENV["sprintly_email"], api_key:ENV['sprintly_api_key'], product_id:ENV['sprintly_product_id']})
+    begin
+      File.open(CONFIG_FILE, 'r') do |f|  
+        self.update(JSON(f.read))
+      end
+    rescue
+      puts "ERROR: Config file missing! Run SLY SETUP <EMAIL> <API_KEY>"
+    end
   end
 
   def save
-    #TODO: save to json config file
+    File.open(CONFIG_FILE, 'w') do |f|  
+      f.puts self.to_json
+    end
   end
 
   def update(attributes={})

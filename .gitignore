@@ -1,4 +1,5 @@
 sprintly_details.rb
+config.json
 
 *.gem
 *.rbc
