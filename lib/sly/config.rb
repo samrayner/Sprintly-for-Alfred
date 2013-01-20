@@ -2,7 +2,7 @@ require 'JSON'
 
 class Sly::Config < Sly::Object
   attr_accessor :email, :api_key, :product_id
-  CONFIG_FILE = File.join(File.dirname(__FILE__), '../../config.json')
+  DEFAULT_CONFIG_file = File.join(File.dirname(__FILE__), '../../config.json')
 
   def initialize(autoload=true)
     @email = @api_key = @product_id = nil
@@ -12,9 +12,13 @@ class Sly::Config < Sly::Object
     end
   end
 
-  def load
+  def load(file_path=nil)
+    if(!file_path)
+      file_path = DEFAULT_CONFIG_file
+    end
+
     begin
-      File.open(CONFIG_FILE, 'r') do |f|  
+      File.open(file_path, 'r') do |f|  
         self.update(JSON(f.read))
       end
     rescue
@@ -22,8 +26,12 @@ class Sly::Config < Sly::Object
     end
   end
 
-  def save
-    File.open(CONFIG_FILE, 'w') do |f|  
+  def save(file_path=nil)
+    if(!file_path)
+      file_path = DEFAULT_CONFIG_file
+    end
+
+    File.open(file_path, 'w') do |f|  
       f.puts self.to_json
     end
   end

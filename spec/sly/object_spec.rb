@@ -35,9 +35,7 @@ describe Sly::Object, integration: true do
 
       obj_from_json.attr_from_hash!(JSON(@obj.to_json))
 
-      @obj.instance_variables.each do |var|
-        obj_from_json.instance_variable_get(var).should == @obj.instance_variable_get(var)
-      end
+      obj_attr_match(@obj, obj_from_json).should be_true
     end
   end
 end

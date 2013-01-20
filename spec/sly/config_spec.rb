@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Sly::Config, integration: true do
+  before :all do
+    @config = Sly::Config.new(false)
+    @config.update({email:"me@example.com", api_key:"123", product_id:"456"})
+    TEST_CONFIG_FILE = "test_config.json"
+  end
+
   describe :update do
     it "sets attributes correctly" do
       config = Sly::Config.new(false)
@@ -14,21 +20,30 @@ describe Sly::Config, integration: true do
 
   describe :save do
     it "creates a file if one does not exist" do
-      raise "TODO"
-    end
+      if(File.exists?(TEST_CONFIG_FILE))
+        File.delete(TEST_CONFIG_FILE)
+      end
 
-    it "writes correct json to the config file" do
-      raise "TODO"
+      @config.save(TEST_CONFIG_FILE)
+
+      File.exists?(TEST_CONFIG_FILE).should be_true
     end
   end
 
   describe :load do
-    it "prints an error if a config file doesn't exist" do
-      raise "TODO"
+    it "loads in saved settings correctly" do
+      config = Sly::Config.new(false)
+      config.load(TEST_CONFIG_FILE)
+      obj_attr_match(@config, config).should be_true
     end
 
-    it "loads in config settings correctly" do
-      raise "TODO"
+    it "prints an error if a config file doesn't exist" do
+      if(File.exists?(TEST_CONFIG_FILE))
+        File.delete(TEST_CONFIG_FILE)
+      end
+
+      output = capture_stdout { @config.load(TEST_CONFIG_FILE) }
+      output.should include("ERROR")
     end
   end
 end
