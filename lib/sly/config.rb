@@ -1,4 +1,4 @@
-class Sly::Config
+class Sly::Config < Sly::Object
   attr_accessor :email, :api_key, :product_id
 
   def initialize(autoload=true)
@@ -19,13 +19,7 @@ class Sly::Config
     #TODO: save to json config file
   end
 
-  def update(attributes)
-    raise "Attributes must be in a Hash" unless attributes.kind_of? Hash
-    attributes.each do |key, val|
-      attribute = "@#{key.to_s}".to_sym
-      if(self.instance_variables.include? attribute)
-        self.instance_variable_set(attribute, val)
-      end
-    end
+  def update(attributes={})
+    self.attr_from_hash!(attributes)
   end
 end

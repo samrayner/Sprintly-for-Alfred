@@ -160,6 +160,26 @@ echo "Setup complete!\nActive product is ".$Product-&gt;name;</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>require_once('Sly.php');
+$Sly = new Sly();
+$Sly-&gt;Config-&gt;update(array("product"=&gt;{query}));
+$Sly-&gt;Config-&gt;save();
+$Product = $Sly-&gt;product({query});
+echo "Switched active product to ".$Product-&gt;name;</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -179,26 +199,6 @@ echo "Setup complete!\nActive product is ".$Product-&gt;name;</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>require_once('Sly.php');
-$Sly = new Sly();
-$Sly-&gt;Config-&gt;update(array("product"=&gt;{query}));
-$Sly-&gt;Config-&gt;save();
-$Product = $Sly-&gt;product({query});
-echo "Switched active product to ".$Product-&gt;name;</string>
-				<key>type</key>
-				<integer>1</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
 		</dict>
 		<dict>
 			<key>config</key>
