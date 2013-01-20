@@ -3,12 +3,10 @@ require 'spec_helper'
 describe Sly::Connector, integration: true do
 
   before :all do
-    config = Sly::Config.new(false)
-    config.update({email:ENV["sprintly_email"], api_key:ENV['sprintly_api_key'], product_id:ENV['sprintly_product_id']})
+    config = Sly::Config.new({email:ENV["sprintly_email"], api_key:ENV['sprintly_api_key'], product_id:ENV['sprintly_product_id']})
     @con = Sly::Connector.new(config)
 
-    bad_config = Sly::Config.new(false)
-    bad_config.update({email:"incorrect_email", api_key:"incorrect_password", product_id:"incorrect_id"})
+    bad_config = Sly::Config.new({email:"incorrect_email", api_key:"incorrect_password", product_id:"incorrect_id"})
     @bad_con = Sly::Connector.new(bad_config)
   end
 

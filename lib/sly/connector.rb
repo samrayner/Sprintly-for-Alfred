@@ -43,6 +43,6 @@ class Sly::Connector
   end
 
   def authorized?
-    products != false
+    products.kind_of?(Array)
   end
 end

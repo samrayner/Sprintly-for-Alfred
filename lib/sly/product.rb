@@ -8,6 +8,6 @@ class Sly::Product < Sly::Object
   end
 
   def alfred_result
-    Sly::WorkflowUtils.item(@id, self.to_json, @name, @created_at)
+    Sly::WorkflowUtils.item(@id, @id, @name, @created_at)
   end
 end

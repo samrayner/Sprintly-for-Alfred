@@ -4,8 +4,7 @@ class Sly::WorkflowUtils
   def self.array_to_xml(array)
     raise "Argument must be an Array" unless array.kind_of? Array
 
-    doc = REXML::Document.new 
-    doc << REXML::XMLDecl.new
+    doc = REXML::Document.new
     root = doc.add_element("items")
     for entry in array
       item = root.add_element("item")
@@ -31,5 +30,15 @@ class Sly::WorkflowUtils
       icon:icon,
       valid:valid
     }
+  end
+
+  def self.results_feed(items)
+    feed_items = []
+    
+    items.each do |item|
+      feed_items << item.alfred_result
+    end
+
+    self.array_to_xml(feed_items)
   end
 end
