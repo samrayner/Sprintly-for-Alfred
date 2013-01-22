@@ -4,9 +4,7 @@ class Sly::Person < Sly::Object
   def initialize(attributes={})
     #defaults
     @id = 0
-    @first_name = "No"
-    @last_name = "one"
-    @email = @created_at = @last_login = ""
+    @first_name = @last_name = @email = @created_at = @last_login = ""
 
     self.attr_from_hash!(attributes)
   end

@@ -9,9 +9,16 @@ class Sly::Connector
     @config = !config ? Sly::Config.new : config
   end
 
-  def authenticated_request(url)
-    uri = URI(url)
-    req = Net::HTTP::Get.new(uri.path)
+  def authenticated_request(url, params={})
+    #always return maximum results
+    params[:limit] = 100
+
+    if(!params.empty?)
+      url << "?"+URI.escape(params.collect{|k,v| "#{k}=#{v}"}.join("&"))
+    end
+
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri.to_s)
     req.basic_auth(@config.email, @config.api_key)
 
     response = Net::HTTP.start(
@@ -39,12 +46,7 @@ class Sly::Connector
   end
 
   def items(filters={})
-    params = ""
-    if(!filters.empty?)
-      params << URI.escape(filters.collect{|k,v| "#{k}=#{v}"}.join('&'))
-    end
-
-    authenticated_request(@api_url+"/products/#{@config.product_id}/items.json?limit=100&#{params}")
+    authenticated_request(@api_url+"/products/#{@config.product_id}/items.json", filters)
   end
 
   def authorized?

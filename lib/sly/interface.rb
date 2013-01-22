@@ -8,16 +8,16 @@ class Sly::Interface
     @connector = !connector ? Sly::Connector.new : connector
   end
 
-  def cache(method, query="")
+  def cache(filename, query="", &block)
     if(!FileTest::directory?(CACHE_DIR))
       Dir::mkdir(CACHE_DIR)
     end
 
-    cache_file = "#{CACHE_DIR}/#{method}.json"
+    cache_file = CACHE_DIR+'/'+filename
     items = []
 
     if(query.empty? || !File.exists?(cache_file))
-      items = @connector.send(method.to_sym)
+      items = block.call
       File.open(cache_file, 'w') do |f|  
         f.puts items.to_json
       end
@@ -27,7 +27,7 @@ class Sly::Interface
           items = JSON(f.read)
         end
       rescue
-        items = @connector.send(method.to_sym)
+        items = block.call
       end
     end
 
@@ -35,7 +35,7 @@ class Sly::Interface
   end
 
   def products(query="")
-    products = self.cache("products", query)
+    products = self.cache("products.json", query) { @connector.products }
 
     #JSON error message returned
     if(!products.kind_of? Array)
@@ -43,10 +43,10 @@ class Sly::Interface
     end
 
     #filter by query
-    products = products.select { |product| query.empty? || product["name"].downcase.include?(query.downcase) }
+    products = products.find_all { |product| query.empty? || product["name"].downcase.match(/^#{query.downcase}/) }
 
     #convert to objects
-    products.map { |product| Sly::Product.new(product) }
+    products.map! { |product| Sly::Product.new(product) }
   end
 
   def product(id)
@@ -60,15 +60,18 @@ class Sly::Interface
     Sly::Product.new(@connector.product(id))
   end
 
-  def items(filters={})
-    items = @connector.items(filters)
+  def items(filters={}, query="")
+    items = self.cache("items.json", query) { @connector.items(filters) }
 
     #JSON error message returned
     if(!items.kind_of? Array)
       return []
     end
 
+    #filter by query
+    #items = items.find_all { |item| query.empty? || item["title"].downcase.include?(query.downcase) }
+
     #convert to appropriate objects
-    items.map { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }
+    items.map! { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }
   end
 end
