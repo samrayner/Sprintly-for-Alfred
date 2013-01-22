@@ -9,7 +9,7 @@ class Sly::WorkflowUtils
     for entry in array
       item = root.add_element("item")
       entry.each do |key, value|
-        if key == :uid or key == :arg
+        if [:uid, :arg, :valid, :autocomplete].include?(key)
           item.attributes[key.to_s] = value.to_s
         else
           element = item.add_element(key.to_s)
@@ -21,24 +21,35 @@ class Sly::WorkflowUtils
     doc.to_s
   end
 
-  def self.item(uid, arg, title, subtitle, icon="icon.png", valid=true)
+  def self.item(uid, arg, title, subtitle, icon="icon.png", valid="yes", autocomplete="")
     return {
       uid:uid, 
       arg:arg,
       title:title,
       subtitle:subtitle,
       icon:icon,
-      valid:valid
+      valid:valid,
+      autocomplete:autocomplete
+    }
+  end
+
+  def self.autocomplete_item(title, subtitle, autocomplete, icon="icon.png")
+    return {
+      uid:Time.now.to_f.to_s.sub(/\./, ""),
+      arg:"",
+      title:title,
+      subtitle:subtitle,
+      icon:icon,
+      valid:"no",
+      autocomplete:autocomplete
     }
   end
 
   def self.results_feed(items)
-    feed_items = []
-    
-    items.each do |item|
-      feed_items << item.alfred_result
+    if(!items.empty? && !items.first.kind_of?(Hash))
+      items.map! { |item| item.alfred_result }
     end
 
-    self.array_to_xml(feed_items)
+    self.array_to_xml(items)
   end
 end

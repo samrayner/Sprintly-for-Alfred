@@ -45,6 +45,7 @@ class Sly::Interface
     #filter by query
     products = products.select { |product| query.empty? || product["name"].downcase.include?(query.downcase) }
 
+    #convert to objects
     products.map { |product| Sly::Product.new(product) }
   end
 
@@ -57,5 +58,17 @@ class Sly::Interface
     end
 
     Sly::Product.new(@connector.product(id))
+  end
+
+  def items(filters={})
+    items = @connector.items(filters)
+
+    #JSON error message returned
+    if(!items.kind_of? Array)
+      return []
+    end
+
+    #convert to appropriate objects
+    items.map { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }
   end
 end

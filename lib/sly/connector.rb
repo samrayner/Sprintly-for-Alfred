@@ -38,8 +38,13 @@ class Sly::Connector
     authenticated_request(@api_url+"/products/#{id}.json")
   end
 
-  def items_for_product(id)
-    authenticated_request(@api_url+"/products/#{id}/items.json")
+  def items(filters={})
+    params = ""
+    if(!filters.empty?)
+      params << URI.escape(filters.collect{|k,v| "#{k}=#{v}"}.join('&'))
+    end
+
+    authenticated_request(@api_url+"/products/#{@config.product_id}/items.json?limit=100&#{params}")
   end
 
   def authorized?
