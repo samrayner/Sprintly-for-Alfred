@@ -1,12 +1,16 @@
 class Sly::Item < Sly::Object
-  attr_accessor :status, :product, :description, :tags
-  attr_accessor :number, :archived, :title
-  attr_accessor :created_by, :score, :assigned_to, :type
+  attr_accessor :status, :product, :description, :tags, :last_modified
+  attr_accessor :number, :archived, :title, :short_url, :created_at
+  attr_accessor :created_by, :score, :assigned_to, :type, :progress
 
   def initialize(attributes={})
+    puts attributes
+
     #defaults
-    @title = @description = @status = @type = @score = ""
+    @title = @description = @status = @type = @score = @short_url = ""
+    @last_modified = @created_at = ""
     @tags = []
+    @progress = {}
     @number = 0
     @archived = false
     @created_by = @assigned_to = [] #changed to Person
@@ -27,6 +31,7 @@ class Sly::Item < Sly::Object
 
   def alfred_result
     subtitle = "Assigned to: #{@assigned_to.full_name}"
-    Sly::WorkflowUtils.item(@number, @number, @title, subtitle)
+    icon = "images/#{@type}-#{@score}.png".downcase
+    Sly::WorkflowUtils.item(@number, @number, @title, subtitle, icon)
   end
 end
