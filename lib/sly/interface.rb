@@ -69,7 +69,7 @@ class Sly::Interface
     end
 
     #filter by query
-    #items = items.find_all { |item| query.empty? || item["title"].downcase.include?(query.downcase) }
+    items = items.find_all { |item| query.empty? || item["title"].downcase.include?(query.downcase) }
 
     #convert to appropriate objects
     items.map! { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }

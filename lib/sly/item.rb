@@ -4,8 +4,6 @@ class Sly::Item < Sly::Object
   attr_accessor :created_by, :score, :assigned_to, :type, :progress
 
   def initialize(attributes={})
-    puts attributes
-
     #defaults
     @title = @description = @status = @type = @score = @short_url = ""
     @last_modified = @created_at = ""

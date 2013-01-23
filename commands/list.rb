@@ -15,10 +15,9 @@ valid_args.each do |arg|
 
     options = Sly::Interface.new.items(filters, QUERY.sub(/^#{arg}\s*/, ""))
     break
-  end
   #partial argument typed - filter options
-  if(arg.match(/^#{QUERY}/))
-    options << Sly::WorkflowUtils.autocomplete_item(arg.capitalize, "List #{arg} items", arg)
+  elsif(arg.match(/^#{QUERY}/))
+    options << Sly::WorkflowUtils.autocomplete_item(arg.capitalize, "List #{arg} items", arg+" ")
   end
 end
 
