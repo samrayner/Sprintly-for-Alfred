@@ -21,4 +21,8 @@ valid_args.each do |arg|
   end
 end
 
+if(options.empty?)
+  options = [Sly::WorkflowUtils.empty_item]
+end
+
 puts Sly::WorkflowUtils.results_feed(options)

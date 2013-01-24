@@ -45,6 +45,10 @@ class Sly::WorkflowUtils
     }
   end
 
+  def self.empty_item
+    return self.autocomplete_item("Not found", "Hit return to clear search", "", "images/task-~.png")
+  end
+
   def self.results_feed(items)
     if(!items.empty? && !items.first.kind_of?(Hash))
       items.map! { |item| item.alfred_result }
