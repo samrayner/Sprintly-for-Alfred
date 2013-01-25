@@ -2,7 +2,7 @@ require 'JSON'
 
 class Sly::Config < Sly::Object
   attr_accessor :email, :api_key, :product_id
-  DEFAULT_CONFIG_FILE = File.join(File.dirname(__FILE__), '../../config.json')
+  DEFAULT_CONFIG_FILE = File.expand_path('~/Library/Application Support/Alfred 2/Workflow Data/com.samrayner.Sprintly/config.json')
 
   def initialize(attributes={})
     if(attributes.empty?)

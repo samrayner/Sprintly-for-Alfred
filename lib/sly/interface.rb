@@ -2,7 +2,7 @@ require 'JSON'
 
 class Sly::Interface
   attr :connector
-  CACHE_DIR = File.join(File.dirname(__FILE__), '../../cache')
+  CACHE_DIR = File.expand_path('~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.samrayner.Sprintly')
 
   def initialize(connector=false)
     @connector = !connector ? Sly::Connector.new : connector
