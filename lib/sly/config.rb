@@ -5,8 +5,6 @@ class Sly::Config < Sly::Object
   DEFAULT_CONFIG_FILE = File.join(File.dirname(__FILE__), '../../config.json')
 
   def initialize(attributes={})
-    @email = @api_key = @product_id = nil
-
     if(attributes.empty?)
       self.load!
     else

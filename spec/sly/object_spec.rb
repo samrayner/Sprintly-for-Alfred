@@ -4,9 +4,7 @@ require 'JSON'
 describe Sly::Object, integration: true do
   before :all do
       @obj = Sly::Object.new()
-      @obj.instance_variable_set(:@foo, 10)
-      @obj.instance_variable_set(:@bar, false)
-      @obj.instance_variable_set(:@baz, "abc")
+      #mock it up with foo, bar, baz attr
   end
 
   describe :attr_from_hash! do
@@ -15,10 +13,10 @@ describe Sly::Object, integration: true do
 
       obj.attr_from_hash!({foo:5,bar:true,zzz:99})
 
-      obj.instance_variable_get(:@foo).should == 5
-      obj.instance_variable_get(:@bar).should == true
-      obj.instance_variable_get(:@baz).should == "abc" #unchanged
-      obj.instance_variable_get(:@zzz).should == nil #shouldn't exist as not in original object
+      obj.foo.should == 5
+      obj.bar.should == true
+      obj.baz.should == "abc" #unchanged
+      obj.zzz.should == nil #shouldn't exist as not in original object
     end
   end
 
@@ -29,9 +27,7 @@ describe Sly::Object, integration: true do
 
     it "returns a reversable JSON object" do
       obj_from_json = Sly::Object.new()
-      obj_from_json.instance_variable_set(:@foo, nil)
-      obj_from_json.instance_variable_set(:@bar, nil)
-      obj_from_json.instance_variable_set(:@baz, nil)
+      #mock it up with foo, bar, baz attr
 
       obj_from_json.attr_from_hash!(JSON(@obj.to_json))
 

@@ -1,14 +1,6 @@
 class Sly::Person < Sly::Object
   attr_accessor :id, :first_name, :last_name, :email, :created_at, :last_login
 
-  def initialize(attributes={})
-    #defaults
-    @id = 0
-    @first_name = @last_name = @email = @created_at = @last_login = ""
-
-    self.attr_from_hash!(attributes)
-  end
-
   def full_name
     if(@first_name.empty?)
       return "Nobody"
