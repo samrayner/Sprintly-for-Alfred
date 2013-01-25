@@ -1,6 +1,4 @@
 sprintly_details.rb
-config.json
-cache/*
 
 *.gem
 *.rbc
