@@ -4,7 +4,10 @@ class Sly::Item < Sly::Object
   attr_accessor :created_by, :score, :assigned_to, :type, :progress
 
   def alfred_result
-    subtitle = "Assigned to: #{@assigned_to.full_name}"
+    subtitle = "Assigned to: #{@assigned_to.full_name}  "
+
+    @tags.each { |tag| subtitle << " #"+tag }
+
     icon = "images/#{@type}-#{@score}.png".downcase
     Sly::WorkflowUtils.item(@number, @number, @title, subtitle, icon)
   end

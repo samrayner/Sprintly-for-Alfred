@@ -13,21 +13,15 @@ class Sly::Object
     end
 
     ["created_at", "last_login", "last_modified"].map do |attribute|
-      if(self.send(attribute).kind_of? String)
-        self.parse_attr(attribute) { |date| DateTime.iso8601(date) }
-      end
+        self.parse_attr(attribute) { |date| (date.kind_of?(String)) ? DateTime.iso8601(date) : DateTime.new }
     end
 
     ["assigned_to", "created_by"].map do |attribute|
-      if(self.send(attribute).kind_of? Hash)
-        self.parse_attr(attribute) { |attributes| Sly::Person.new(attributes) }
-      end
+        self.parse_attr(attribute, {}) { |attributes| Sly::Person.new(attributes) }
     end
 
     ["product"].map do |attribute|
-      if(self.send(attribute).kind_of? Hash)
-        self.parse_attr(attribute) { |attributes| Sly::Product.new(attributes) }
-      end
+        self.parse_attr(attribute, {}) { |attributes| Sly::Product.new(attributes) }
     end
   end
 
@@ -35,9 +29,13 @@ class Sly::Object
     json = Hash[self.instance_variables.map { |var| [var.to_s.sub(/^@/, ""), instance_variable_get(var)] }].to_json
   end
 
-  def parse_attr(attribute, &block)
+  def parse_attr(attribute, nil_value=nil, &block)
     if(self.respond_to?(attribute+"="))
-      self.send(attribute+"=", block.call(self.send(attribute)))
+      value = self.send(attribute)
+
+      value = nil_value if value == nil
+
+      self.send(attribute+"=", block.call(value))
     end
   end
 end

@@ -1,17 +1,16 @@
-require 'JSON'
+require 'json'
+require 'fileutils'
 
 class Sly::Interface
   attr :connector
-  CACHE_DIR = File.expand_path('~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.samrayner.Sprintly')
+  CACHE_DIR = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"+Sly::BUNDLE_ID)
 
   def initialize(connector=false)
     @connector = !connector ? Sly::Connector.new : connector
   end
 
   def cache(filename, query="", &block)
-    if(!FileTest::directory?(CACHE_DIR))
-      Dir::mkdir(CACHE_DIR)
-    end
+    FileUtils.mkpath(CACHE_DIR)
 
     cache_file = CACHE_DIR+'/'+filename
     items = []

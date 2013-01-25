@@ -1,5 +1,7 @@
 module Sly
-  VERSION = '0.0.1'
+  BUNDLE_ID = "com.samrayner.Sprintly"
+  VERSION = "0.0.1"
+  class ConfigFileMissingError < StandardError; end
 end
 
 require_relative 'sly/object.rb'

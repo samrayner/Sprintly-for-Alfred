@@ -13,7 +13,15 @@ valid_args.each do |arg|
 
     filters = {status:status}
 
-    options = Sly::Interface.new.items(filters, QUERY.sub(/^#{arg}\s*/, ""))
+    begin
+      sly = Sly::Interface.new
+    rescue Sly::ConfigFileMissingError => e
+      error = [Sly::WorkflowUtils.error_item(e)]
+      puts Sly::WorkflowUtils.results_feed(error)
+      exit
+    end
+
+    options = sly.items(filters, QUERY.sub(/^#{arg}\s*/, ""))
     break
   #partial argument typed - filter options
   elsif(arg.match(/^#{QUERY}/))

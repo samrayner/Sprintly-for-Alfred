@@ -46,7 +46,13 @@ class Sly::WorkflowUtils
   end
 
   def self.empty_item
-    return self.autocomplete_item("Not found", "Hit return to clear search", "", "images/task-~.png")
+    return self.autocomplete_item("No results", "Hit return to clear search", "", "images/task-~.png")
+  end
+
+  def self.error_item(error)
+    title = error.class.to_s.match(/^Sly::(.+)Error$/)
+    title = title[1].gsub(/([a-z])([A-Z])/, '\1 \2')
+    return self.autocomplete_item(title, error.message, "", "images/defect-~.png")
   end
 
   def self.results_feed(items)
