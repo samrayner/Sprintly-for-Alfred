@@ -33,44 +33,62 @@ class Sly::Interface
     items
   end
 
+  def people(query="")
+    people = self.cache("people.json", query) { @connector.people }
+
+    #JSON error message returned
+    if(!people.kind_of? Array)
+      return []
+    end
+
+    #convert to objects
+    people.map! { |person| Sly::Person.new(person) }
+
+    #filter by query
+    people.find_all { |person| query.empty? || person.first_name.downcase.include?(query.downcase) }
+  end
+
   def products(query="")
     products = self.cache("products.json", query) { @connector.products }
 
     #JSON error message returned
-    if(!products.kind_of? Array)
-      return []
-    end
-
-    #filter by query
-    products = products.find_all { |product| query.empty? || product["name"].downcase.match(/^#{query.downcase}/) }
+    return [] if(!products.kind_of? Array)
 
     #convert to objects
     products.map! { |product| Sly::Product.new(product) }
-  end
 
-  def product(id)
-    product = @connector.product(id)
-
-    #JSON errors have an error code
-    if(product.include? "code")
-      return false
-    end
-
-    Sly::Product.new(@connector.product(id))
+    #filter by query
+    products.find_all { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
   end
 
   def items(filters={}, query="")
     items = self.cache("items.json", query) { @connector.items(filters) }
 
     #JSON error message returned
-    if(!items.kind_of? Array)
-      return []
-    end
-
-    #filter by query
-    items = items.find_all { |item| query.empty? || item["title"].downcase.include?(query.downcase) }
+    return [] if(!items.kind_of? Array)
 
     #convert to appropriate objects
     items.map! { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }
+
+    #filter by query
+    items.find_all { |item| query.empty? || item.title.downcase.include?(query.downcase) }
+  end
+
+  def product(id)
+    product = @connector.product(id)
+
+    #JSON errors have an error code
+    return nil if(product.include? "code")
+
+    Sly::Product.new(product)
+  end
+
+  def person(id)
+    person = @connector.person(id)
+
+    #JSON errors have an error code
+    return nil if(person.include? "code")
+
+    Sly::Person.new(person)
   end
 end

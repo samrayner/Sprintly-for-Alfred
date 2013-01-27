@@ -3,6 +3,12 @@ class Sly::Item < Sly::Object
   attr_accessor :number, :archived, :title, :short_url, :created_at
   attr_accessor :created_by, :score, :assigned_to, :type, :progress
 
+  def initialize(attributes={})
+    super(attributes)
+
+    @tags = [] if(!@tags)
+  end
+
   def alfred_result
     subtitle = "Assigned to: #{@assigned_to.full_name}  "
 

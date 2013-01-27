@@ -14,4 +14,8 @@ class Sly::Person < Sly::Object
 
     name
   end
+
+  def alfred_result
+    Sly::WorkflowUtils.item(@id, @id, self.full_name, @email)
+  end
 end

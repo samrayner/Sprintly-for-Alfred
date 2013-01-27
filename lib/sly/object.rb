@@ -33,9 +33,10 @@ class Sly::Object
     if(self.respond_to?(attribute+"="))
       value = self.send(attribute)
 
-      value = nil_value if value == nil
-
-      self.send(attribute+"=", block.call(value))
+      if(!value.kind_of?(Sly::Object))
+        value = nil_value if value == nil
+        self.send(attribute+"=", block.call(value))
+      end
     end
   end
 end

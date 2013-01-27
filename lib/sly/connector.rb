@@ -30,11 +30,15 @@ class Sly::Connector
       https.request(req)
     end
 
-    if response.class.body_permitted?
+    if(response.class.body_permitted?)
       JSON(response.body)
     else
       false
     end
+  end
+
+  def people
+    authenticated_request(@api_url+"/products/#{@config.product_id}/people.json")
   end
 
   def products
@@ -43,6 +47,10 @@ class Sly::Connector
 
   def product(id)
     authenticated_request(@api_url+"/products/#{id}.json")
+  end
+
+  def person(id)
+    authenticated_request(@api_url+"/products/#{@config.product_id}/people/#{id}.json")
   end
 
   def items(filters={})
