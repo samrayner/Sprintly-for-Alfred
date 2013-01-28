@@ -2,7 +2,7 @@ QUERY = ARGV[0]
 require_relative "../lib/sly"
 
 sly = Sly::Interface.new
-product = sly.product(QUERY)
+product = sly.product(QUERY.sub(/^\#/, ""))
 sly.connector.config.product_id = product.id
 sly.connector.config.save
 

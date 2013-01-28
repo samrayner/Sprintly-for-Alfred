@@ -15,6 +15,6 @@ class Sly::Item < Sly::Object
     @tags.each { |tag| subtitle << " #"+tag }
 
     icon = "images/#{@type}-#{@score}.png".downcase
-    Sly::WorkflowUtils.item(@number, @number, @title, subtitle, icon)
+    Sly::WorkflowUtils.item(@number, "#"+@number.to_s, @title, subtitle, icon)
   end
 end

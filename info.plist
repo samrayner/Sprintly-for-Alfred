@@ -54,19 +54,11 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>DF9281A4-9DCE-4D72-976E-AD5345EF14DD</string>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>Open Sprint.ly page for item</string>
 			</dict>
 		</array>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
@@ -139,6 +131,23 @@
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
+				<string>COMMAND = "setup"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
 				<string>COMMAND = "open_item_url"
 QUERY = "{query}"
 load 'run_command.rb'</string>
@@ -153,19 +162,25 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>COMMAND = "setup"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>type</key>
-				<integer>2</integer>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Test</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+			<string>835228C6-811F-4B90-8CDA-B17AC8119AD8</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -193,29 +208,6 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Test</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>835228C6-811F-4B90-8CDA-B17AC8119AD8</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -311,19 +303,6 @@ load 'run_command.rb'</string>
 			<key>uid</key>
 			<string>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</string>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>#{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>DF9281A4-9DCE-4D72-976E-AD5345EF14DD</string>
-		</dict>
 	</array>
 	<key>uidata</key>
 	<dict>
@@ -335,7 +314,7 @@ load 'run_command.rb'</string>
 		<key>835228C6-811F-4B90-8CDA-B17AC8119AD8</key>
 		<dict>
 			<key>ypos</key>
-			<real>390</real>
+			<real>370</real>
 		</dict>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<dict>
@@ -355,7 +334,7 @@ load 'run_command.rb'</string>
 		<key>95D043B1-6F35-4DD0-A449-379C47F588D1</key>
 		<dict>
 			<key>ypos</key>
-			<real>330</real>
+			<real>310</real>
 		</dict>
 		<key>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</key>
 		<dict>
@@ -365,17 +344,12 @@ load 'run_command.rb'</string>
 		<key>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</key>
 		<dict>
 			<key>ypos</key>
-			<real>390</real>
+			<real>370</real>
 		</dict>
 		<key>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>270</real>
-		</dict>
-		<key>DF9281A4-9DCE-4D72-976E-AD5345EF14DD</key>
-		<dict>
-			<key>ypos</key>
-			<real>270</real>
+			<real>240</real>
 		</dict>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<dict>

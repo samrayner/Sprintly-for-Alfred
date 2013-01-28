@@ -18,7 +18,7 @@ defaults = {
   type: "task",
   title: "Preview",
   score: "~",
-  tags: nil,
+  tags: [],
   assigned_to: nil
 }
 
@@ -27,10 +27,10 @@ scores = {s:"small", m:"medium", l:"large", xl:"extra-large"}
 options = []
 
 if(matches)
-  item = defaults
+  item = defaults.dup
   item.each_key { |key| item[key] = matches[key].strip if matches[key] }
 
-  if(item[:tags])
+  if(!item[:tags].empty?)
     #convert "#tag1 #tag2" to [tag1, tag2]
     item[:tags] = item[:tags].strip.split(" #").map { |tag| tag.strip.sub(/^#/, "") }
   end
@@ -38,13 +38,19 @@ if(matches)
   if(item[:assigned_to])
     #convert "@id" to Person
     item[:assigned_to] = item[:assigned_to].strip.sub(/^\@/, "")
-    item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.person(item[:assigned_to])
+    item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
   end
 
   preview_item = Sly::const_get("#{defaults[:type].capitalize}Item").new(item)
   result = preview_item.alfred_result
-  result[:autocomplete] = QUERY
-  result[:valid] = "no"
+
+  if(item[:title] == defaults[:title])
+    result[:autocomplete] = QUERY
+    result[:valid] = "no"
+  else
+    result[:arg] = CGI.escape(item.to_json)
+  end
+
   options = [result]
 
   #autocomplete score
