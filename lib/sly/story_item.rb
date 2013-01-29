@@ -2,19 +2,30 @@ class Sly::StoryItem < Sly::Item
   attr_accessor :who, :what, :why
 
   def title=(value)
-    @title = value
-    self.parse_title
+    self.parse_title(value)
   end
 
-  def parse_title
+  def title
+    prefixes = {
+      who: "As a",
+      what: "I want",
+      why: "so that"
+    }
+
+    prefixes[:who] += "n" if @who && ["a","e","i","o","u","h"].include?(@who[0,1])
+
+    prefixes[:who]+" "+@who.to_s+", "+prefixes[:what]+" "+@what.to_s+" "+prefixes[:why]+" "+@why.to_s+"."
+  end
+
+  def parse_title(title)
     #default values
-    @who = "user"
-    @what = @title
-    @why = "undefined"
+    @who = "X"
+    @what = "Y"
+    @why = "Z"
 
-    regex = /^\s*(?:as a|aa)\s+(?<who>.+)\s+(?:i want|iw)\s+(?<what>.+)\s+(?:so that|st)\s+(?<why>.+)/i
+    regex = /^\s*(?:as an?|aa)\s+(?<who>[^,]+),?\W+(?:i want|iw)\s+(?<what>.+)\W+(?:so that|st)\s+(?<why>.+)/i
 
-    matches = @title.match(regex)
+    matches = title.match(regex)
     
     if(matches)
       matches.names.each do |name|

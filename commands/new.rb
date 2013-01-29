@@ -29,7 +29,11 @@ options = []
 
 if(matches)
   item = defaults.dup
-  item.each_key { |key| item[key] = matches[key].strip if matches[key] }
+  item.each_key do |key| 
+    if(matches.names.include?(key.to_s) && matches[key])
+      item[key] = matches[key].strip
+    end
+  end
 
   if(!item[:tags].empty?)
     #convert "#tag1 #tag2" to [tag1, tag2]
@@ -55,7 +59,7 @@ if(matches)
   options = [result]
 
   #autocomplete score
-  if(QUERY.match(/#{item[:type]} ?$/i))
+  if(QUERY.match(/^#{item[:type]} ?$/i))
     options = []
     scores.each_key do |score|
       options << Sly::WorkflowUtils.autocomplete_item(scores[score].capitalize, "", "#{item[:type]} #{score} ", "images/#{item[:type]}-#{score}.png")

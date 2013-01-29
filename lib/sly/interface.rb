@@ -45,7 +45,7 @@ class Sly::Interface
     people.map! { |person| Sly::Person.new(person) }
 
     #filter by query
-    people.find_all { |person| query.empty? || person.first_name.downcase.include?(query.downcase) }
+    people.find_all { |person| query.empty? || person.full_name.downcase.include?(query.downcase) }
   end
 
   def products(query="")
@@ -93,9 +93,7 @@ class Sly::Interface
   end
 
   def add_item(item)
-    if(item.assigned_to.id)
-      item.assigned_to = item.assigned_to.id
-    end
+    item.assigned_to = item.assigned_to.id if(item.assigned_to.id)
 
     attributes = item.to_hash
 

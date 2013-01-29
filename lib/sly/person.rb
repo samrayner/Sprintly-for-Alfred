@@ -7,10 +7,7 @@ class Sly::Person < Sly::Object
     end
 
     name = @first_name
-
-    if(@last_name)
-      name << " #{@last_name}"
-    end
+    name += " #{@last_name}" if(@last_name)
 
     name
   end

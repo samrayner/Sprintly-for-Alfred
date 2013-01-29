@@ -7,8 +7,10 @@ sly = Sly::Interface.new
 
 attributes = JSON(CGI.unescape(QUERY))
 
-Sly::Item.new_typed(attributes)
+item = Sly::Item.new_typed(attributes)
 
 sly.add_item(item)
+
+item.status = "current" if(item.status == "in-progress")
 
 puts "Added #{item.type} \"#{item.title}\" to #{item.status}"
