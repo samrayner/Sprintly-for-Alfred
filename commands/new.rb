@@ -15,6 +15,7 @@ $/ix
 matches = regex.match(QUERY)
 
 defaults = {
+  status: "backlog",
   type: "task",
   title: "Preview",
   score: "~",
@@ -41,7 +42,7 @@ if(matches)
     item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
   end
 
-  preview_item = Sly::const_get("#{item[:type].capitalize}Item").new(item)
+  preview_item = Sly::Item.new_typed(item)
   result = preview_item.alfred_result
 
   if(item[:title] == defaults[:title])

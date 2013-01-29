@@ -68,7 +68,7 @@ class Sly::Interface
     return [] if(!items.kind_of? Array)
 
     #convert to appropriate objects
-    items.map! { |item| Sly::const_get("#{item["type"].capitalize}Item").new(item) }
+    items.map! { |item| Sly::Item.new_typed(item) }
 
     #filter by query
     items.find_all { |item| query.empty? || item.title.downcase.include?(query.downcase) }

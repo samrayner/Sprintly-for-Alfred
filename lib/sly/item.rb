@@ -9,6 +9,24 @@ class Sly::Item < Sly::Object
     @tags = [] if(!@tags)
   end
 
+  def self.new_typed(attributes={})
+    type_key = :type
+
+    type = false
+
+    if(attributes[type_key])
+      type = attributes[type_key]
+    elsif(attributes[type_key.to_s])
+      type = attributes[type_key.to_s]
+    end
+    
+    if(type)
+      Sly::const_get("#{type.capitalize}Item").new(attributes)
+    else
+      self.new(attributes)
+    end
+  end
+
   def alfred_result
     subtitle = "Assigned to: #{@assigned_to.full_name}  "
 
