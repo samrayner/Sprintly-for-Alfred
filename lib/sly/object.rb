@@ -25,8 +25,24 @@ class Sly::Object
     end
   end
 
+  def to_hash
+    hash = {}
+    self.instance_variables.each do |var| 
+      value = self.instance_variable_get(var)
+
+      if(value.kind_of?(Sly::Object))
+        value = value.to_hash
+      elsif(value.kind_of?(DateTime))
+        value = value.iso8601
+      end
+
+      hash[var[1..-1].to_sym] = value
+    end
+    hash
+  end
+
   def to_json
-    json = Hash[self.instance_variables.map { |var| [var.to_s.sub(/^@/, ""), instance_variable_get(var)] }].to_json
+    self.to_hash.to_json
   end
 
   def parse_attr(attribute, nil_value=nil, &block)

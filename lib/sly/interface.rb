@@ -91,4 +91,20 @@ class Sly::Interface
 
     Sly::Person.new(person)
   end
+
+  def add_item(item)
+    if(item.assigned_to.id)
+      item.assigned_to = item.assigned_to.id
+    end
+
+    attributes = item.to_hash
+
+    attributes.each_key do |key|
+      if(attributes[key].kind_of? Hash)
+        attributes.delete(key)
+      end
+    end
+
+    @connector.add_item(attributes)
+  end
 end

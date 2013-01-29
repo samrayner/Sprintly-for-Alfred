@@ -48,7 +48,7 @@ if(matches)
     result[:autocomplete] = QUERY
     result[:valid] = "no"
   else
-    result[:arg] = CGI.escape(item.to_json)
+    result[:arg] = CGI.escape(preview_item.to_json)
   end
 
   options = [result]
