@@ -41,7 +41,7 @@ if(matches)
     item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
   end
 
-  preview_item = Sly::const_get("#{defaults[:type].capitalize}Item").new(item)
+  preview_item = Sly::const_get("#{item[:type].capitalize}Item").new(item)
   result = preview_item.alfred_result
 
   if(item[:title] == defaults[:title])

@@ -12,11 +12,7 @@ class Sly::StoryItem < Sly::Item
     @what = @title
     @why = "undefined"
 
-    regex = /^\s*
-      (?:as a|aa)\s+(?<who>.+)\s+
-      (?:i want|iw)\s+(?<what>.+)\s+
-      (?:so that|st)\s+(?<why>.+)\s*
-    $/i
+    regex = /^\s*(?:as a|aa)\s+(?<who>.+)\s+(?:i want|iw)\s+(?<what>.+)\s+(?:so that|st)\s+(?<why>.+)/i
 
     matches = @title.match(regex)
     
