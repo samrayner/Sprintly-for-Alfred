@@ -10,6 +10,14 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>View in browser</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -110,7 +118,7 @@
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Open Sprint.ly page for product</string>
+				<string>View in browser</string>
 			</dict>
 		</array>
 	</dict>
@@ -134,7 +142,7 @@
 				<key>keyword</key>
 				<string>sly start</string>
 				<key>runningsubtext</key>
-				<string>Fetching backlog...</string>
+				<string>Fetching Backlog...</string>
 				<key>script</key>
 				<string>COMMAND = "list"
 QUERY = "backlog {query}"
@@ -142,7 +150,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Move an item from backlog to current</string>
 				<key>title</key>
-				<string>Start a Sprint.ly Item</string>
+				<string>Start an Item From Sprint.ly Backlog</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -190,9 +198,9 @@ load 'run_command.rb'</string>
 QUERY = "{query}"
 load 'run_command.rb'</string>
 				<key>subtext</key>
-				<string>Use format: story s As a user I want this so that this #tag @sam</string>
+				<string>Use format: story s As a user, I want this so that this #tag @sam</string>
 				<key>title</key>
-				<string>Create New Sprintly Item</string>
+				<string>Add a New Sprint.ly Item</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -299,7 +307,7 @@ load 'run_command.rb'</string>
 QUERY = "{query}"
 load 'run_command.rb'</string>
 				<key>subtext</key>
-				<string>Get items from someday, backlog, current, completed, accepted or all</string>
+				<string>Get items from Backlog, Current, Completed or Accepted</string>
 				<key>title</key>
 				<string>List Sprint.ly Items</string>
 				<key>type</key>

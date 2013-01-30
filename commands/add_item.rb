@@ -13,4 +13,4 @@ sly.add_item(item)
 
 item.status = "current" if(item.status == "in-progress")
 
-puts "Added #{item.type} \"#{item.title}\" to #{item.status}"
+puts "Added #{item.type} \"#{item.title}\" to #{item.status.capitalize}"

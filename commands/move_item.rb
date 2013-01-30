@@ -7,7 +7,7 @@ matches = QUERY.match(/^\#(?<id>\d+)\s+(?<status>someday|backlog|current|complet
 if(matches)
   status = matches[:status] == "current" ? "in-progress" : matches[:status]
   sly.update_item(matches[:id], {"status" => status})
-  puts "Moved item ##{matches[:id]} to #{matches[:status].to_s.capitalize}"
+  puts "Moved item ##{matches[:id]} to #{matches[:status].capitalize}"
 else
   puts "Invalid ID or status"
 end
