@@ -92,6 +92,15 @@ class Sly::Interface
     Sly::Person.new(person)
   end
 
+  def item(id)
+    item = @connector.item(id)
+
+    #JSON errors have an error code
+    return nil if(item.include? "code")
+
+    Sly::Item.new_typed(item)
+  end
+
   def add_item(item)
     item.assigned_to = item.assigned_to.id if(item.assigned_to.id)
 
@@ -104,5 +113,21 @@ class Sly::Interface
     end
 
     @connector.add_item(attributes)
+  end
+
+  def update_item(id, attributes)
+    raise "Attributes must be in a Hash" unless attributes.kind_of? Hash
+
+    item = @connector.item(id)
+
+    item.delete("type") if item["type"]
+    item["assigned_to"] = item["assigned_to"]["id"] if(item["assigned_to"])
+    item["created_by"] = item["created_by"]["id"] if(item["created_by"])
+
+    attributes.each_key do |key|
+      item[key] = attributes[key] if item.has_key?(key)
+    end
+
+    @connector.update_item(id, item)
   end
 end

@@ -6,6 +6,28 @@
 	<string>com.samrayner.Sprintly</string>
 	<key>connections</key>
 	<dict>
+		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<array>
 			<dict>
@@ -106,69 +128,30 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>4</integer>
 				<key>keyword</key>
-				<string>sly setup</string>
+				<string>sly start</string>
+				<key>runningsubtext</key>
+				<string>Fetching backlog...</string>
+				<key>script</key>
+				<string>COMMAND = "list"
+QUERY = "backlog {query}"
+load 'run_command.rb'</string>
 				<key>subtext</key>
-				<string>Required arguments: &lt;email&gt; &lt;api_key&gt;</string>
-				<key>text</key>
-				<string>Set Sprint.ly Email and API Key</string>
+				<string>Move an item from backlog to current</string>
+				<key>title</key>
+				<string>Start a Sprint.ly Item</string>
+				<key>type</key>
+				<integer>2</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>https://sprint.ly/product/{query}/</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>927117FC-B2F4-46B6-8365-C32D06898CE9</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>COMMAND = "open_item_url"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>COMMAND = "setup"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+			<string>663CF8A1-EE33-424C-B650-1DEB0927EBFA</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -192,6 +175,115 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>sly new</string>
+				<key>script</key>
+				<string>COMMAND = "new"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>subtext</key>
+				<string>Use format: story s As a user I want this so that this #tag @sam</string>
+				<key>title</key>
+				<string>Create New Sprintly Item</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>sly setup</string>
+				<key>subtext</key>
+				<string>Required arguments: &lt;email&gt; &lt;api_key&gt;</string>
+				<key>text</key>
+				<string>Set Sprint.ly Email and API Key</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "setup"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "add_item"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A1A8C844-E445-4237-A32E-D7F0CEB26F37</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>sly product</string>
+				<key>runningsubtext</key>
+				<string>Fetching products...</string>
+				<key>script</key>
+				<string>COMMAND = "products"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>subtext</key>
+				<string>What do you want to work on?</string>
+				<key>title</key>
+				<string>Switch Sprint.ly Product</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -226,6 +318,40 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
+				<string>COMMAND = "move_item"
+QUERY = "{query} current"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "open_item_url"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
 				<string>COMMAND = "switch_product"
 QUERY = "{query}"
 load 'run_command.rb'</string>
@@ -240,73 +366,17 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>keyword</key>
-				<string>sly new</string>
-				<key>script</key>
-				<string>COMMAND = "new"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>subtext</key>
-				<string>Use format: story s As a user I want this so that this #tag @sam</string>
-				<key>title</key>
-				<string>Create New Sprintly Item</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>https://sprint.ly/product/{query}/</string>
+				<key>utf8</key>
 				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>COMMAND = "add_item"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>A1A8C844-E445-4237-A32E-D7F0CEB26F37</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>keyword</key>
-				<string>sly product</string>
-				<key>script</key>
-				<string>COMMAND = "products"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>subtext</key>
-				<string>What do you want to work on?</string>
-				<key>title</key>
-				<string>Switch Sprint.ly Product</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
+			<string>927117FC-B2F4-46B6-8365-C32D06898CE9</string>
 		</dict>
 	</array>
 	<key>uidata</key>
@@ -314,7 +384,17 @@ load 'run_command.rb'</string>
 		<key>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</key>
 		<dict>
 			<key>ypos</key>
-			<real>110</real>
+			<real>210</real>
+		</dict>
+		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
+		</dict>
+		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
 		</dict>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<dict>
