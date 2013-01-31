@@ -1,11 +1,4 @@
-Sprint.ly Workflow for Alfred 2
-===============================
-
----
-
-**[Download](https://dl.dropbox.com/s/e6f6zvkpihylasd/Sprintly.alfredworkflow)**
-
----
+#Sprint.ly Workflow for Alfred 2 - [Download](https://dl.dropbox.com/s/e6f6zvkpihylasd/Sprintly.alfredworkflow)
 
 Installation
 ------------
