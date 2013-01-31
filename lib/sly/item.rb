@@ -33,7 +33,7 @@ class Sly::Item < Sly::Object
   end
 
   def alfred_result
-    subtitle = "Assigned to: #{@assigned_to.full_name}  "
+    subtitle = "Assigned to #{@assigned_to.full_name}  "
 
     @tags.each { |tag| subtitle << " #"+tag }
 

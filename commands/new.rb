@@ -79,7 +79,7 @@ if(matches)
 else
   types.each do |type|
     if(QUERY.empty? || type.match(/^#{QUERY.downcase}/))
-      options << Sly::WorkflowUtils.autocomplete_item(type.capitalize, "Create new #{type}", type+" ", "images/#{type}-~.png")
+      options << Sly::WorkflowUtils.autocomplete_item(type.capitalize, "", type+" ", "images/#{type}-~.png")
     end
   end
 end
