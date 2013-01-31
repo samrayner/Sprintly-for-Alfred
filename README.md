@@ -1,10 +1,16 @@
 Sprint.ly Workflow for Alfred 2
 ===============================
 
+---
+
+##[Download](https://dl.dropbox.com/s/e6f6zvkpihylasd/Sprintly.alfredworkflow)
+
+---
+
 Installation
 ------------
 
-**Requirements:** Ruby 1.9.x must be installed with RVM: <https://rvm.io/>
+**Requirements:** Ruby 1.9.x must be installed with [RVM][].
 
 **sly setup {email} {api_key}** - Your API key can be obtained from <https://sprint.ly/account/profile/>
 
@@ -21,6 +27,24 @@ Commands
 **sly new {type} _{size}_ {title} _{#tag}_ _{@name}_** - Add a new item to Backlog
 
 
+Screenshots
+-----------
+
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.128.jpg)][1]
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.128.jpg)][2]
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.128.jpg)][3]
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.128.jpg)][4]
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.128.jpg)][5]
+[![](http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.128.jpg)][6]
+
+[1]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.jpg
+[2]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.jpg
+[3]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.jpg
+[4]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.jpg
+[5]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.jpg
+[6]: http://samrayner.sr/app/cache/files/Collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.jpg
+
+
 Tips
 ----
 
@@ -32,4 +56,4 @@ Story titles can be entered shorthand as: _**aa** user **iw** this **st** that_
 
 `tab` has the same effect as `return`
 
-Rspec tests can be run with `$ rake` in the root directory
+[rvm]: https://rvm.io/
