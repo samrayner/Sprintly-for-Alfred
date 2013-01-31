@@ -10,19 +10,19 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>View in browser</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>View in browser</string>
 			</dict>
 		</array>
 		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
@@ -114,7 +114,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>927117FC-B2F4-46B6-8365-C32D06898CE9</string>
+				<string>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
@@ -343,6 +343,23 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
+				<string>COMMAND = "open_product_url"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
 				<string>COMMAND = "open_item_url"
 QUERY = "{query}"
 load 'run_command.rb'</string>
@@ -371,21 +388,6 @@ load 'run_command.rb'</string>
 			<key>uid</key>
 			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>https://sprint.ly/product/{query}/</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>927117FC-B2F4-46B6-8365-C32D06898CE9</string>
-		</dict>
 	</array>
 	<key>uidata</key>
 	<dict>
@@ -397,22 +399,17 @@ load 'run_command.rb'</string>
 		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
 		<dict>
 			<key>ypos</key>
-			<real>510</real>
+			<real>410</real>
 		</dict>
 		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
 		<dict>
 			<key>ypos</key>
-			<real>510</real>
+			<real>410</real>
 		</dict>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<dict>
 			<key>ypos</key>
 			<real>210</real>
-		</dict>
-		<key>927117FC-B2F4-46B6-8365-C32D06898CE9</key>
-		<dict>
-			<key>ypos</key>
-			<real>310</real>
 		</dict>
 		<key>9371B276-809C-43E7-AC8E-9308F699FDF4</key>
 		<dict>
@@ -422,7 +419,7 @@ load 'run_command.rb'</string>
 		<key>95D043B1-6F35-4DD0-A449-379C47F588D1</key>
 		<dict>
 			<key>ypos</key>
-			<real>410</real>
+			<real>510</real>
 		</dict>
 		<key>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</key>
 		<dict>
@@ -439,10 +436,15 @@ load 'run_command.rb'</string>
 			<key>ypos</key>
 			<real>110</real>
 		</dict>
+		<key>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</key>
+		<dict>
+			<key>ypos</key>
+			<real>310</real>
+		</dict>
 		<key>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>410</real>
+			<real>510</real>
 		</dict>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<dict>
