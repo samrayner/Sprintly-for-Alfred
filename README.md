@@ -30,19 +30,19 @@ Commands
 Screenshots
 -----------
 
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.128.jpg)][1]
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.128.jpg)][2]
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.128.jpg)][3]
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.128.jpg)][4]
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.128.jpg)][5]
-[![](http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.128.jpg)][6]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.128.jpg)][1]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.128.jpg)][2]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.128.jpg)][3]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.128.jpg)][4]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.128.jpg)][5]
+[![](http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.128.jpg)][6]
 
-[1]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.jpg
-[2]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.jpg
-[3]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.jpg
-[4]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.jpg
-[5]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.jpg
-[6]: http://samrayner.com/app/cache/files/Collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.jpg
+[1]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/1.%20Main%20Options.jpg
+[2]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/2.%20Listing%20Items.jpg
+[3]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/3.%20Adding%20an%20Item.jpg
+[4]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/4.%20Scoring%20a%20New%20Item.jpg
+[5]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/5.%20Previewing%20a%20New%20Item.jpg
+[6]: http://samrayner.com/app/cache/files/collections/Sprint.ly%20for%20Alfred/6.%20Assigning%20an%20Item%20to%20a%20User.jpg
 
 
 Tips
