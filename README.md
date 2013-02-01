@@ -17,6 +17,8 @@ Commands
 
 **sly start** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser
 
+**sly finish** - List Current items, `return` to move item to Completed, `alt+return` to view in browser
+
 **sly new {type} _{size}_ {title} _{#tag}_ _{@name}_** - Add a new item to Backlog
 
 

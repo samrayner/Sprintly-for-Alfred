@@ -69,6 +69,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>9E24F479-497F-4B26-A8A8-3BCF2554E43B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</key>
 		<array>
 			<dict>
@@ -85,6 +96,25 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>View in browser</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>9E24F479-497F-4B26-A8A8-3BCF2554E43B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -141,14 +171,16 @@
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly start</string>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
-				<string>Fetching Backlog...</string>
+				<string>Fetching Backlog items...</string>
 				<key>script</key>
 				<string>COMMAND = "list"
 QUERY = "backlog {query}"
 load 'run_command.rb'</string>
 				<key>subtext</key>
-				<string>Move an item from backlog to current</string>
+				<string>Move an item from Backlog to Current</string>
 				<key>title</key>
 				<string>Start an Item From Sprint.ly Backlog</string>
 				<key>type</key>
@@ -193,6 +225,8 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly new</string>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "new"
 QUERY = "{query}"
@@ -235,6 +269,8 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "setup"
 QUERY = "{query}"
@@ -252,6 +288,8 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "add_item"
 QUERY = "{query}"
@@ -273,6 +311,8 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly product</string>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string>Fetching products...</string>
 				<key>script</key>
@@ -302,6 +342,8 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly list</string>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "list"
 QUERY = "{query}"
@@ -325,6 +367,8 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "move_item"
 QUERY = "{query} current"
@@ -340,8 +384,41 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>keyword</key>
+				<string>sly finish</string>
+				<key>normalisation</key>
+				<integer>0</integer>
+				<key>runningsubtext</key>
+				<string>Fetching Current items…</string>
+				<key>script</key>
+				<string>COMMAND = "list"
+QUERY = "current {query}"
+load 'run_command.rb'</string>
+				<key>subtext</key>
+				<string>Move an item from Current to Completed</string>
+				<key>title</key>
+				<string>Finish a Current Sprint.ly Item</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A848D7D3-1766-4232-9FA6-03D327C33572</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "open_product_url"
 QUERY = "{query}"
@@ -359,6 +436,8 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "open_item_url"
 QUERY = "{query}"
@@ -376,6 +455,27 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>COMMAND = "move_item"
+QUERY = "{query} completed"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9E24F479-497F-4B26-A8A8-3BCF2554E43B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>normalisation</key>
+				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "switch_product"
 QUERY = "{query}"
@@ -426,6 +526,11 @@ load 'run_command.rb'</string>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>9E24F479-497F-4B26-A8A8-3BCF2554E43B</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
 		<key>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</key>
 		<dict>
 			<key>ypos</key>
@@ -435,6 +540,11 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>ypos</key>
 			<real>110</real>
+		</dict>
+		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
 		</dict>
 		<key>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</key>
 		<dict>
