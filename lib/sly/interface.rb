@@ -24,16 +24,12 @@ class Sly::Interface
     cache_file = CACHE_DIR+'/'+filename
     items = []
 
-    if(query.empty? || !File.exists?(cache_file))
+    if query.empty? || !File.exists?(cache_file)
       items = block.call
-      File.open(cache_file, 'w') do |f|  
-        f.puts items.to_json
-      end
+      File.open(cache_file, 'w') { |f| f.puts items.to_json }
     else
       begin
-        File.open(cache_file, 'r') do |f|  
-          items = JSON(f.read)
-        end
+        File.open(cache_file, 'r') { |f| items = JSON(f.read) }
       rescue
         items = block.call
       end

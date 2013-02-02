@@ -4,8 +4,8 @@ class Sly::Person < Sly::Object
   def full_name
     return "Nobody" unless @first_name
 
-    name = @first_name
-    name += " #{@last_name}" if @last_name
+    name = @first_name.dup
+    name << " #{@last_name}" if @last_name
 
     name
   end

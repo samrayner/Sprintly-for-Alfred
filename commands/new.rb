@@ -35,6 +35,25 @@ if matches
     end
   end
 
+  #autocomplete score
+  if QUERY.match(/^#{item[:type]} ?$/i)
+    options = []
+    scores.each_key do |score|
+      options << Sly::WorkflowUtils.autocomplete_item(scores[score].capitalize, "", "#{item[:type]} #{score} ", "images/#{item[:type]}-#{score}.png")
+    end
+    puts Sly::WorkflowUtils.results_feed(options)
+    exit
+  end
+
+  #autocomplete person
+  person_match = QUERY.match(/\@([a-z]*)$/i)
+  if person_match
+    people = sly.people(person_match[1])
+    people.map! { |person| Sly::WorkflowUtils.autocomplete_item(person.full_name, person.email, QUERY.sub(/#{person_match[1]}$/, person.id.to_s)) }
+    puts Sly::WorkflowUtils.array_to_xml(people)
+    exit
+  end
+
   unless item[:tags].empty?
     #convert "#tag1 #tag2" to [tag1, tag2]
     item[:tags] = item[:tags].strip.split(" #").map { |tag| tag.strip.sub(/^#/, "") }
@@ -57,23 +76,6 @@ if matches
   end
 
   options = [result]
-
-  #autocomplete score
-  if QUERY.match(/^#{item[:type]} ?$/i)
-    options = []
-    scores.each_key do |score|
-      options << Sly::WorkflowUtils.autocomplete_item(scores[score].capitalize, "", "#{item[:type]} #{score} ", "images/#{item[:type]}-#{score}.png")
-    end
-  end
-
-  #autocomplete person
-  person_match = QUERY.match(/\@([a-z]*)$/i)
-  if person_match
-    people = sly.people(person_match[1])
-    people.map! { |person| Sly::WorkflowUtils.autocomplete_item(person.full_name, person.email, QUERY.sub(/#{person_match[1]}$/, person.id.to_s)) }
-    puts Sly::WorkflowUtils.array_to_xml(people)
-    exit
-  end
 
 #autocomplete type
 else
