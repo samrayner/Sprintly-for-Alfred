@@ -11,8 +11,6 @@ end
 
 options = sly.products(QUERY)
 
-if(options.empty?)
-  options = [Sly::WorkflowUtils.empty_item]
-end
+options = [Sly::WorkflowUtils.empty_item] if options.empty?
 
 puts Sly::WorkflowUtils.results_feed(options)

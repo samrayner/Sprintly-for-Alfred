@@ -4,7 +4,7 @@ sly = Sly::Interface.new
 
 matches = QUERY.match(/^\#(?<id>\d+)\s+(?<status>someday|backlog|current|completed|accepted)/i)
 
-if(matches)
+if matches
   sly.update_item(matches[:id], {"status" => Sly::Interface.api_term(matches[:status])})
   puts "Moved item ##{matches[:id]} to #{matches[:status].capitalize}"
 else

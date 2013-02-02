@@ -27,20 +27,20 @@ types = ["story", "task", "defect", "test"]
 scores = {s:"small", m:"medium", l:"large", xl:"extra-large"}
 options = []
 
-if(matches)
+if matches
   item = defaults.dup
   item.each_key do |key| 
-    if(matches.names.include?(key.to_s) && matches[key])
+    if matches.names.include?(key.to_s) && matches[key]
       item[key] = matches[key].strip
     end
   end
 
-  if(!item[:tags].empty?)
+  unless item[:tags].empty?
     #convert "#tag1 #tag2" to [tag1, tag2]
     item[:tags] = item[:tags].strip.split(" #").map { |tag| tag.strip.sub(/^#/, "") }
   end
 
-  if(item[:assigned_to])
+  if item[:assigned_to]
     #convert "@id" to Person
     item[:assigned_to] = item[:assigned_to].strip.sub(/^\@/, "")
     item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
@@ -49,7 +49,7 @@ if(matches)
   preview_item = Sly::Item.new_typed(item)
   result = preview_item.alfred_result
 
-  if(item[:title] == defaults[:title])
+  if item[:title] == defaults[:title]
     result[:autocomplete] = QUERY
     result[:valid] = "no"
   else
@@ -59,7 +59,7 @@ if(matches)
   options = [result]
 
   #autocomplete score
-  if(QUERY.match(/^#{item[:type]} ?$/i))
+  if QUERY.match(/^#{item[:type]} ?$/i)
     options = []
     scores.each_key do |score|
       options << Sly::WorkflowUtils.autocomplete_item(scores[score].capitalize, "", "#{item[:type]} #{score} ", "images/#{item[:type]}-#{score}.png")
@@ -68,7 +68,7 @@ if(matches)
 
   #autocomplete person
   person_match = QUERY.match(/\@([a-z]*)$/i)
-  if(person_match)
+  if person_match
     people = sly.people(person_match[1])
     people.map! { |person| Sly::WorkflowUtils.autocomplete_item(person.full_name, person.email, QUERY.sub(/#{person_match[1]}$/, person.id.to_s)) }
     puts Sly::WorkflowUtils.array_to_xml(people)
@@ -78,14 +78,12 @@ if(matches)
 #autocomplete type
 else
   types.each do |type|
-    if(QUERY.empty? || type.match(/^#{QUERY.downcase}/))
+    if QUERY.empty? || type.match(/^#{QUERY.downcase}/)
       options << Sly::WorkflowUtils.autocomplete_item(type.capitalize, "", type+" ", "images/#{type}-~.png")
     end
   end
 end
 
-if(options.empty?)
-  options = [Sly::WorkflowUtils.empty_item]
-end
+options = [Sly::WorkflowUtils.empty_item] if options.empty?
 
 puts Sly::WorkflowUtils.results_feed(options)

@@ -12,9 +12,9 @@ class Sly::StoryItem < Sly::Item
       why: "so that"
     }
 
-    prefixes[:who] += "n" if @who && ["a","e","i","o","h"].include?(@who[0,1])
+    prefixes[:who] << "n" if @who && ["a","e","i","o","h"].include?(@who[0,1])
 
-    prefixes[:who]+" "+@who.to_s+", "+prefixes[:what]+" "+@what.to_s+" "+prefixes[:why]+" "+@why.to_s+"."
+    "#{prefixes[:who]} #{@who}, #{prefixes[:what]} #{@what} #{prefixes[:why]} #{@why}"
   end
 
   def parse_title(title)
@@ -27,10 +27,8 @@ class Sly::StoryItem < Sly::Item
 
     matches = title.match(regex)
     
-    if(matches)
-      matches.names.each do |name|
-        self.send(name.to_s+"=", matches[name])
-      end
+    if matches
+      matches.names.each { |name| self.send(name.to_s+"=", matches[name]) }
     end
   end
 end

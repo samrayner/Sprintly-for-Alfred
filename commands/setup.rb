@@ -3,7 +3,7 @@ require_relative "../lib/sly"
 
 credentials = QUERY.split(" ")
 
-if(credentials.count != 2)
+unless credentials.count == 2
   puts "ERROR: Please use format SLY SETUP <EMAIL> <API_KEY>"
   exit
 end
@@ -11,7 +11,7 @@ end
 config = Sly::Config.new({email:credentials[0], api_key:credentials[1], product_id:0000})
 connector = Sly::Connector.new(config)
 
-if(!connector.authorized?)
+unless connector.authorized?
   puts "ERROR: Authentication failed for #{config.email}."
   exit
 end

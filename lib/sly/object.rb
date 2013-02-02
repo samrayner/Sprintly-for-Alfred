@@ -7,13 +7,11 @@ class Sly::Object
     raise "Attributes must be in a Hash" unless attributes.kind_of? Hash
 
     attributes.each do |key, val|
-      if(self.respond_to?(key.to_s+"="))
-        self.send(key.to_s+"=", val)
-      end
+      self.send(key.to_s+"=", val) if self.respond_to?(key.to_s+"=")
     end
 
     ["created_at", "last_login", "last_modified"].map do |attribute|
-        self.parse_attr(attribute) { |date| (date.kind_of?(String)) ? DateTime.iso8601(date) : DateTime.new }
+        self.parse_attr(attribute) { |date| date.kind_of?(String) ? DateTime.iso8601(date) : DateTime.new }
     end
 
     ["assigned_to", "created_by"].map do |attribute|
@@ -30,9 +28,9 @@ class Sly::Object
     self.instance_variables.each do |var| 
       value = self.instance_variable_get(var)
 
-      if(value.kind_of?(Sly::Object))
+      if value.kind_of?(Sly::Object)
         value = value.to_hash
-      elsif(value.kind_of?(DateTime))
+      elsif value.kind_of?(DateTime)
         value = value.iso8601
       end
 
@@ -46,10 +44,10 @@ class Sly::Object
   end
 
   def parse_attr(attribute, nil_value=nil, &block)
-    if(self.respond_to?(attribute+"="))
+    if self.respond_to?(attribute+"=")
       value = self.send(attribute)
 
-      if(!value.kind_of?(Sly::Object))
+      unless value.kind_of?(Sly::Object)
         value = nil_value if value == nil
         self.send(attribute+"=", block.call(value))
       end

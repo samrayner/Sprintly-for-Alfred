@@ -52,6 +52,10 @@ class Sly::Connector
     authenticated_request(@api_url+"/products.json")
   end
 
+  def authorized?
+    products.kind_of?(Array)
+  end
+
   def product(id)
     authenticated_request(@api_url+"/products/#{id}.json")
   end
@@ -66,10 +70,6 @@ class Sly::Connector
 
   def item(id)
     authenticated_request(@api_url+"/products/#{@config.product_id}/items/#{id}.json")
-  end
-
-  def authorized?
-    products.kind_of?(Array)
   end
 
   def add_item(attributes)

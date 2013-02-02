@@ -6,7 +6,7 @@ options = []
 
 valid_args.each do |arg|
   #full argument typed - show results
-  if(QUERY.match(/^#{arg}/))
+  if QUERY.match(/^#{arg}/)
     filters = {status:Sly::Interface.api_term(arg)}
 
     begin
@@ -20,13 +20,11 @@ valid_args.each do |arg|
     options = sly.items(filters, QUERY.sub(/^#{arg}\s*/, ""))
     break
   #partial argument typed - filter options
-  elsif(arg.match(/^#{QUERY}/))
+  elsif arg.match(/^#{QUERY}/)
     options << Sly::WorkflowUtils.autocomplete_item(arg.capitalize, "List #{arg} items", arg+" ")
   end
 end
 
-if(options.empty?)
-  options = [Sly::WorkflowUtils.empty_item]
-end
+options = [Sly::WorkflowUtils.empty_item] if options.empty?
 
 puts Sly::WorkflowUtils.results_feed(options)

@@ -5,15 +5,14 @@ class Sly::Item < Sly::Object
 
   def initialize(attributes={})
     super(attributes)
-
-    @score = @score.upcase if(@score)
-    @tags = [] if(!@tags)
+    @score = @score.upcase if @score
+    @tags = [] unless @tags
   end
 
   def self.new_typed(attributes={})
     type = self.hash_value(attributes, :type)
     
-    if(type)
+    if type 
       Sly::const_get("#{type.capitalize}Item").new(attributes)
     else
       self.new(attributes)
@@ -23,9 +22,9 @@ class Sly::Item < Sly::Object
   def self.hash_value(hash, key)
     value = nil
 
-    if(hash[key])
+    if hash[key]
       value = hash[key]
-    elsif(hash[key.to_s])
+    elsif hash[key.to_s]
       value = hash[key.to_s]
     end
 
