@@ -15,7 +15,7 @@ regex = /^
   (?:\s+(?<score>s|m|l|xl))?
   (?:\s+(?<title>[^\#\@]+))?
   (?<tags>(?:\s+\#[^\#\@]*\s*)+\s*)?
-  (?<assigned_to>\@\w*)?
+  (?:\@(?<assigned_to>\w*))?
 $/ix
 
 matches = regex.match(QUERY)
@@ -26,7 +26,7 @@ defaults = {
   title: "Preview",
   score: "~",
   tags: [],
-  assigned_to: nil
+  assigned_to: ""
 }
 
 types = ["story", "task", "defect", "test"]
@@ -65,11 +65,8 @@ if matches
     item[:tags] = item[:tags].strip.split(" #").map { |tag| tag.strip.sub(/^#/, "") }
   end
 
-  if item[:assigned_to]
-    #convert "@id" to Person
-    item[:assigned_to] = item[:assigned_to].strip.sub(/^\@/, "")
-    item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
-  end
+  #convert "@id" to Person
+  item[:assigned_to] = item[:assigned_to].empty? ? nil : sly.connector.person(item[:assigned_to])
 
   preview_item = Sly::Item.new_typed(item)
   result = preview_item.alfred_result

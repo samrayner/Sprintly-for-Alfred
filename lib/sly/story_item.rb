@@ -19,9 +19,9 @@ class Sly::StoryItem < Sly::Item
 
   def parse_title(title)
     #default values
-    @who = "X"
-    @what = "Y"
-    @why = "Z"
+    @who = "__"
+    @what = "__"
+    @why = "__"
 
     regex = /^\s*(?:as an?|aa)\s+(?<who>[^,]+),?\W+(?:i want|iw)\s+(?<what>.+)\W+(?:so that|st)\s+(?<why>.+)/i
 

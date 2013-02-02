@@ -15,6 +15,11 @@ attributes = JSON(CGI.unescape(QUERY))
 
 item = Sly::Item.new_typed(attributes)
 
+if item.type == "story" && item.to_hash.values_at(:who, :what, :why).include?("__")
+  puts "ERROR: Incomplete story title '#{item.title}'"
+  exit
+end
+
 sly.add_item(item)
 
 column = Sly::Interface.common_term(item.status).capitalize
