@@ -102,6 +102,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>A5ABA5DC-6451-4FED-B8A7-AD113D8374AC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
 		<array>
 			<dict>
@@ -337,6 +348,37 @@ load 'run_command.rb'</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>sly item #</string>
+				<key>normalisation</key>
+				<integer>0</integer>
+				<key>runningsubtext</key>
+				<string>Fetching item...</string>
+				<key>script</key>
+				<string>COMMAND = "item"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>subtext</key>
+				<string>Preview an item, hit return to view in browser</string>
+				<key>title</key>
+				<string>Get a Sprint.ly Item by ID</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A5ABA5DC-6451-4FED-B8A7-AD113D8374AC</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>4</integer>
@@ -540,6 +582,11 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>ypos</key>
 			<real>110</real>
+		</dict>
+		<key>A5ABA5DC-6451-4FED-B8A7-AD113D8374AC</key>
+		<dict>
+			<key>ypos</key>
+			<real>310</real>
 		</dict>
 		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
 		<dict>
