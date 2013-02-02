@@ -1,7 +1,7 @@
 QUERY = ARGV[0].to_s.downcase.strip
 require_relative "../lib/sly"
 
-valid_args = ["backlog", "current", "completed", "accepted"]
+valid_args = ["someday", "backlog", "current", "completed", "accepted"]
 options = []
 
 valid_args.each do |arg|
