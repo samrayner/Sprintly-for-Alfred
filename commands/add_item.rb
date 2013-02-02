@@ -11,6 +11,6 @@ item = Sly::Item.new_typed(attributes)
 
 sly.add_item(item)
 
-item.status = "current" if(item.status == "in-progress")
+column = Sly::Interface.common_term(item.status).capitalize
 
-puts "Added #{item.type} \"#{item.title}\" to #{item.status.capitalize}"
+puts "Added #{item.type} \"#{item.title}\" to #{column}"

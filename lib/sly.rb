@@ -1,6 +1,9 @@
 module Sly
   BUNDLE_ID = "com.samrayner.Sprintly"
   VERSION = "0.0.1"
+
+  API_DICTIONARY = { "in-progress" => "current" }
+
   class ConfigFileMissingError < StandardError; end
 end
 

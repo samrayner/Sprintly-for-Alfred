@@ -5,6 +5,15 @@ class Sly::Interface
   attr :connector
   CACHE_DIR = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"+Sly::BUNDLE_ID)
 
+  def self.api_term(term)
+    key = Sly::API_DICTIONARY.key(term)
+    key ? key : term
+  end
+
+  def self.common_term(term)
+    Sly::API_DICTIONARY.fetch(term, term)
+  end
+
   def initialize(connector=false)
     @connector = !connector ? Sly::Connector.new : connector
   end

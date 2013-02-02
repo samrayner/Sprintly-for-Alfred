@@ -7,11 +7,7 @@ options = []
 valid_args.each do |arg|
   #full argument typed - show results
   if(QUERY.match(/^#{arg}/))
-    filters = {}
-
-    status = (arg == "current") ? "in-progress" : arg
-
-    filters = {status:status}
+    filters = {status:Sly::Interface.api_term(arg)}
 
     begin
       sly = Sly::Interface.new
