@@ -4,8 +4,7 @@ require_relative "../lib/sly"
 begin
   sly = Sly::Interface.new
 rescue Sly::ConfigFileMissingError => e
-  error = [Sly::WorkflowUtils.error_item(e)]
-  puts Sly::WorkflowUtils.results_feed(error)
+  puts Sly::WorkflowUtils.results_feed([Sly::WorkflowUtils.error_item(e)])
   exit
 end
 

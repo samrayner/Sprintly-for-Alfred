@@ -2,7 +2,13 @@ require 'cgi'
 
 QUERY = ARGV[0].to_s.strip
 require_relative "../lib/sly"
-sly = Sly::Interface.new
+
+begin
+  sly = Sly::Interface.new
+rescue Sly::ConfigFileMissingError => e
+  puts Sly::WorkflowUtils.results_feed([Sly::WorkflowUtils.error_item(e)])
+  exit
+end
 
 regex = /^
   (?<type>story|task|defect|test)
