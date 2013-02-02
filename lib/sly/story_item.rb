@@ -23,12 +23,31 @@ class Sly::StoryItem < Sly::Item
     @what = "__"
     @why = "__"
 
-    regex = /^\s*(?:as an?|aa)\s+(?<who>[^,]+),?\W+(?:i want|iw)\s+(?<what>.+)\W+(?:so that|st)\s+(?<why>.+)/i
+    captures = {
+      "who" => "as an?|aa",
+      "what" => " i want| iw",
+      "why" => " so that| st"
+    }
+
+    regex_str = '^\s*'
+
+    captures.each do |key,val|
+      prefix = '(?:'+val+')\s+'
+      if title.match(Regexp.new(prefix, true))
+        regex_str << prefix+'(?<'+key+'>.+)'
+      end
+    end
+
+    regex = Regexp.new(regex_str, true)
 
     matches = title.match(regex)
-    
+
     if matches
-      matches.names.each { |name| self.send(name.to_s+"=", matches[name]) }
+      matches.names.each do |name| 
+        value = matches[name].strip
+        value.sub!(/,$/, "") if name == "who"
+        self.send(name+"=", value) unless value == self.send(name)
+      end
     end
   end
 end

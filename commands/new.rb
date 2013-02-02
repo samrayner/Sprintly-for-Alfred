@@ -15,7 +15,7 @@ regex = /^
   (?:\s+(?<score>s|m|l|xl))?
   (?:\s+(?<title>[^\#\@]+))?
   (?<tags>(?:\s+\#[^\#\@]*\s*)+\s*)?
-  (?:\@(?<assigned_to>\w*))?
+  (?:\@(?<assigned_to>[\w]*))?
 $/ix
 
 matches = regex.match(QUERY)
