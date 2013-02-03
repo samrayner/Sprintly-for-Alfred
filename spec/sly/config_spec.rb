@@ -35,13 +35,12 @@ describe Sly::Config, integration: true do
       obj_attr_match(@config, config).should be_true
     end
 
-    it "prints an error if a config file doesn't exist" do
+    it "raises an error if a config file doesn't exist" do
       if(File.exists?(TEST_CONFIG_FILE))
         File.delete(TEST_CONFIG_FILE)
       end
 
-      output = capture_stdout { @config.load!(TEST_CONFIG_FILE) }
-      output.should include("ERROR")
+      lambda { @config.load!(TEST_CONFIG_FILE) }.should raise_error(Sly::ConfigFileMissingError)
     end
   end
 end

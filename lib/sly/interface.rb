@@ -3,7 +3,6 @@ require 'fileutils'
 
 class Sly::Interface
   attr :connector
-  CACHE_DIR = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"+Sly::BUNDLE_ID)
 
   def self.api_term(term)
     key = Sly::API_DICTIONARY.key(term)
@@ -19,9 +18,9 @@ class Sly::Interface
   end
 
   def cache(filename, query="", &block)
-    FileUtils.mkpath(CACHE_DIR)
+    FileUtils.mkpath(Sly::CACHE_DIR)
 
-    cache_file = CACHE_DIR+'/'+filename
+    cache_file = Sly::CACHE_DIR+'/'+filename
     items = []
 
     if query.empty? || !File.exists?(cache_file)
@@ -107,16 +106,7 @@ class Sly::Interface
   end
 
   def add_item(item)
-    item.assigned_to = item.assigned_to.id if(item.assigned_to.id)
-
-    attributes = item.to_hash
-
-    attributes.each_key do |key|
-      if(attributes[key].kind_of? Hash)
-        attributes.delete(key)
-      end
-    end
-
+    attributes = item.to_hash(true)
     @connector.add_item(attributes)
   end
 
@@ -126,8 +116,8 @@ class Sly::Interface
     item = @connector.item(id)
 
     item.delete("type") if item["type"]
-    item["assigned_to"] = item["assigned_to"]["id"] if(item["assigned_to"])
-    item["created_by"] = item["created_by"]["id"] if(item["created_by"])
+    item["assigned_to"] = item["assigned_to"]["id"] if item["assigned_to"]
+    item["created_by"] = item["created_by"]["id"] if item["created_by"]
 
     attributes.each_key do |key|
       item[key] = attributes[key] if item.has_key?(key)

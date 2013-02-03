@@ -8,25 +8,23 @@ describe Sly::Interface, integration: true do
 
     @api = Sly::Interface.new(Sly::Connector.new(good_config))
     @bad_api = Sly::Interface.new(Sly::Connector.new(bad_config))
-
-    CACHE_DIR = File.join(File.dirname(__FILE__), '../../cache')
   end
 
   describe :cache do 
     it "creates a cache directory if one does not exist" do
-      if(FileTest::directory?(CACHE_DIR))
-        FileUtils.rm_rf(CACHE_DIR)
+      if(FileTest::directory?(Sly::CACHE_DIR))
+        FileUtils.rm_rf(Sly::CACHE_DIR)
       end
 
-      FileTest::directory?(CACHE_DIR).should be_false
+      FileTest::directory?(Sly::CACHE_DIR).should be_false
 
-      @api.cache("products")
+      @api.cache("products.json") { @api.connector.products }
 
-      FileTest::directory?(CACHE_DIR).should be_true
+      FileTest::directory?(Sly::CACHE_DIR).should be_true
     end
 
     it "creates a cache file if one does not exist" do
-      cache_file = "#{CACHE_DIR}/products.json"
+      cache_file = "#{Sly::CACHE_DIR}/products.json"
 
       if(File.exists?(cache_file))
         File.delete(cache_file)
@@ -34,7 +32,7 @@ describe Sly::Interface, integration: true do
 
       File.exists?(cache_file).should be_false
 
-      @api.cache("products")
+      @api.cache("products.json") { @api.connector.products }
 
       File.exists?(cache_file).should be_true
     end
@@ -50,19 +48,6 @@ describe Sly::Interface, integration: true do
       @bad_api.products.should be_a_kind_of(Array)
       @bad_api.products.should be_empty
     end
-
-    it "filters products by name" do
-      filter = "e"
-      filtered = @api.products(filter)
-      filtered.should be_a_kind_of(Array)
-
-      filtered.each do |product|
-        product.name.downcase.should include(filter)
-      end
-
-      @api.products("xxxxxx").should be_a_kind_of(Array)
-      @api.products("xxxxxx").should be_empty
-    end
   end
 
   describe :product do
@@ -71,7 +56,7 @@ describe Sly::Interface, integration: true do
     end
 
     it "returns nothing with a bad config" do
-      @bad_api.product(ENV['sprintly_product_id']).should be_false
+      @bad_api.product(ENV['sprintly_product_id']).should be_nil
     end
   end
 end

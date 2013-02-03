@@ -4,6 +4,9 @@ module Sly
 
   API_DICTIONARY = { "in-progress" => "current" }
 
+  CONFIG_FILE = File.expand_path("~/Library/Application Support/Alfred 2/Workflow Data/#{BUNDLE_ID}/config.json")
+  CACHE_DIR = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"+BUNDLE_ID)
+
   class ConfigFileMissingError < StandardError; end
 end
 

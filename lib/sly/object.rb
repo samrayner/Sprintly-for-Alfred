@@ -23,13 +23,18 @@ class Sly::Object
     end
   end
 
-  def to_hash
+  def to_hash(flatten=false)
     hash = {}
     self.instance_variables.each do |var| 
       value = self.instance_variable_get(var)
 
       if value.kind_of?(Sly::Object)
-        value = value.to_hash
+        if flatten
+          #store id if present, else ignore
+          value.id ? value = value.id : break
+        else
+          value = value.to_hash
+        end
       elsif value.kind_of?(DateTime)
         value = value.iso8601
       end
@@ -39,8 +44,8 @@ class Sly::Object
     hash
   end
 
-  def to_json
-    self.to_hash.to_json
+  def to_json(flatten=false)
+    self.to_hash(flatten).to_json
   end
 
   def parse_attr(attribute, nil_value=nil, &block)

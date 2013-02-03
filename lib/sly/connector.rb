@@ -38,7 +38,11 @@ class Sly::Connector
     end
 
     if(response.class.body_permitted?)
-      JSON(response.body)
+      begin 
+        JSON(response.body)
+      rescue JSON::ParserError
+        false
+      end
     else
       false
     end
