@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 load "sprintly_details.rb"
 require_relative '../lib/sly'
 
@@ -14,9 +17,7 @@ end
 
 def obj_attr_match(obj1, obj2)
   obj1.instance_variables.each do |var|
-    if(obj2.instance_variable_get(var) != obj1.instance_variable_get(var))
-      return false
-    end
+    return false unless obj2.instance_variable_get(var) == obj1.instance_variable_get(var)
   end
 
   true
