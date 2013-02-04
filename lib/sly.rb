@@ -1,11 +1,11 @@
 module Sly
+  VERSION = "1.0"
   BUNDLE_ID = "com.samrayner.Sprintly"
-  VERSION = "0.0.1"
-
-  API_DICTIONARY = { "in-progress" => "current" }
-
+  
   CONFIG_FILE = File.expand_path("~/Library/Application Support/Alfred 2/Workflow Data/#{BUNDLE_ID}/config.json")
   CACHE_DIR = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"+BUNDLE_ID)
+
+  API_DICTIONARY = { "in-progress" => "current" }
 
   class ConfigFileMissingError < StandardError; end
 end

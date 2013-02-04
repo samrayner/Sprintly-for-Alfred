@@ -113,16 +113,18 @@ class Sly::Interface
   def update_item(id, attributes)
     raise "Attributes must be in a Hash" unless attributes.kind_of? Hash
 
-    item = @connector.item(id)
+    item_hash = @connector.item(id)
 
-    item.delete("type") if item["type"]
-    item["assigned_to"] = item["assigned_to"]["id"] if item["assigned_to"]
-    item["created_by"] = item["created_by"]["id"] if item["created_by"]
+    item = Sly::Item.new_typed(item_hash)
 
-    attributes.each_key do |key|
-      item[key] = attributes[key] if item.has_key?(key)
-    end
+    item.attr_from_hash!(attributes)
 
-    @connector.update_item(id, item)
+    #updated attributes, flattened
+    item_hash = item.to_hash(true)
+
+    #can't change type of item
+    item_hash.delete(:type)
+
+    @connector.update_item(id, item_hash)
   end
 end
