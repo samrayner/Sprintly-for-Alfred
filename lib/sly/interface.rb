@@ -41,15 +41,13 @@ class Sly::Interface
     people = self.cache("people.json", query) { @connector.people }
 
     #JSON error message returned
-    if(!people.kind_of? Array)
-      return []
-    end
+    return [] unless people.kind_of?(Array)
 
     #convert to objects
     people.map! { |person| Sly::Person.new(person) }
 
     #filter by query
-    people.find_all do |person| 
+    people.select do |person| 
       query.empty? || 
       person.full_name.downcase.include?(query.downcase) ||
       (query.downcase == "me" && person.email == @connector.config.email)
@@ -60,33 +58,47 @@ class Sly::Interface
     products = self.cache("products.json", query) { @connector.products }
 
     #JSON error message returned
-    return [] if(!products.kind_of? Array)
+    return [] unless products.kind_of?(Array)
 
     #convert to objects
     products.map! { |product| Sly::Product.new(product) }
 
     #filter by query
-    products.find_all { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
+    products.select { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
   end
 
   def items(filters={}, query="")
     items = self.cache("items.json", query) { @connector.items(filters) }
 
     #JSON error message returned
-    return [] if(!items.kind_of? Array)
+    return [] unless items.kind_of?(Array)
 
     #convert to appropriate objects
     items.map! { |item| Sly::Item.new_typed(item) }
 
+    person_filter = query.match(/\@([^\s]*)/)
+
+    if person_filter
+      query.sub!(person_filter[0], "").strip!
+      person_filter = person_filter[1].downcase
+    end
+
+    #filter by person
+    items.select! do |item| 
+      person_filter.to_s.empty? || 
+      item.assigned_to.full_name.downcase.include?(person_filter) ||
+      (person_filter == "me" && item.assigned_to.email == @connector.config.email)
+    end
+
     #filter by query
-    items.find_all { |item| query.empty? || item.title.downcase.include?(query.downcase) }
+    items.select { |item| query.empty? || item.title.downcase.include?(query.downcase) }
   end
 
   def product(id)
     product = @connector.product(id)
 
     #JSON errors have an error code
-    return nil if(product.include? "code")
+    return nil if product.include?("code")
 
     Sly::Product.new(product)
   end
@@ -95,7 +107,7 @@ class Sly::Interface
     person = @connector.person(id)
 
     #JSON errors have an error code
-    return nil if(person.include? "code")
+    return nil if person.include?("code")
 
     Sly::Person.new(person)
   end
@@ -104,7 +116,7 @@ class Sly::Interface
     item = @connector.item(id)
 
     #JSON errors have an error code
-    return nil if(item.include? "code")
+    return nil if item.include?("code")
 
     Sly::Item.new_typed(item)
   end
@@ -117,7 +129,7 @@ class Sly::Interface
   end
 
   def update_item(id, attributes)
-    raise "Attributes must be in a Hash" unless attributes.kind_of? Hash
+    raise "Attributes must be in a Hash" unless attributes.kind_of?(Hash)
 
     item_hash = @connector.item(id)
 
