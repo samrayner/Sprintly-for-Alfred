@@ -1,5 +1,5 @@
 module Sly
-  VERSION = "1.0"
+  VERSION = "1.1"
   BUNDLE_ID = "com.samrayner.Sprintly"
   
   CONFIG_FILE = File.expand_path("~/Library/Application Support/Alfred 2/Workflow Data/#{BUNDLE_ID}/config.json")
