@@ -49,7 +49,11 @@ class Sly::Interface
     people.map! { |person| Sly::Person.new(person) }
 
     #filter by query
-    people.find_all { |person| query.empty? || person.full_name.downcase.include?(query.downcase) }
+    people.find_all do |person| 
+      query.empty? || 
+      person.full_name.downcase.include?(query.downcase) ||
+      (query.downcase == "me" && person.email == @connector.config.email)
+    end
   end
 
   def products(query="")
