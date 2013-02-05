@@ -111,6 +111,8 @@ class Sly::Interface
 
   def add_item(item)
     attributes = item.to_hash(true)
+    attributes[:tags] = attributes[:tags].join(",")
+
     @connector.add_item(attributes)
   end
 
@@ -125,6 +127,7 @@ class Sly::Interface
 
     #updated attributes, flattened
     item_hash = item.to_hash(true)
+    item_hash[:tags] = item_hash[:tags].join(",")
 
     #can't change type of item
     item_hash.delete(:type)
