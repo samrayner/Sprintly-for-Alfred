@@ -11,7 +11,7 @@ Installation
 Commands
 --------
 
-{foo} = required argument
+{foo} = required argument   
 _{bar}_ = optional argument
 
 **sly product _{filter}_** - List products, `return` to switch active product, `alt+return` to view in browser
