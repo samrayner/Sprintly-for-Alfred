@@ -12,7 +12,7 @@ class Sly::StoryItem < Sly::Item
       why: "so that"
     }
 
-    prefixes[:who] << "n" if @who && ["a","e","i","o","h"].include?(@who[0,1])
+    prefixes[:who] << "n" if @who && ["a","e","i","o"].include?(@who[0,1])
 
     "#{prefixes[:who]} #{@who}, #{prefixes[:what]} #{@what} #{prefixes[:why]} #{@why}"
   end
