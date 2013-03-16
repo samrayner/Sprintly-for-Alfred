@@ -193,8 +193,6 @@
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly start</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string>Fetching Backlog items...</string>
 				<key>script</key>
@@ -247,8 +245,6 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly new</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "new"
 QUERY = "{query}"
@@ -291,8 +287,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "setup"
 QUERY = "{query}"
@@ -308,10 +302,19 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>9D28E664-A03A-4FAF-B371-213128DEA302</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "add_item"
 QUERY = "{query}"
@@ -333,8 +336,6 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly product</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string>Fetching products...</string>
 				<key>script</key>
@@ -364,8 +365,6 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly item #</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string>Fetching item...</string>
 				<key>script</key>
@@ -395,8 +394,6 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly list</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "list"
 QUERY = "{query}"
@@ -420,8 +417,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "move_item"
 QUERY = "{query} current"
@@ -443,8 +438,6 @@ load 'run_command.rb'</string>
 				<integer>4</integer>
 				<key>keyword</key>
 				<string>sly finish</string>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string>Fetching Current items…</string>
 				<key>script</key>
@@ -470,8 +463,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "open_product_url"
 QUERY = "{query}"
@@ -489,8 +480,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "open_item_url"
 QUERY = "{query}"
@@ -508,8 +497,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "move_item"
 QUERY = "{query} completed"
@@ -527,8 +514,6 @@ load 'run_command.rb'</string>
 			<dict>
 				<key>escaping</key>
 				<integer>4</integer>
-				<key>normalisation</key>
-				<integer>0</integer>
 				<key>script</key>
 				<string>COMMAND = "switch_product"
 QUERY = "{query}"
@@ -578,6 +563,11 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>9D28E664-A03A-4FAF-B371-213128DEA302</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
 		</dict>
 		<key>9E24F479-497F-4B26-A8A8-3BCF2554E43B</key>
 		<dict>
