@@ -18,7 +18,7 @@ _{bar}_ = optional argument
 
 **sly list {status} _{@name}_ _{filter}_** - List items (optionally filtered by person), `return` to view in browser
 
-**sly start _{filter}_** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser
+**sly start _{filter}_** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git branch` command for the item to the clipboard (can be disabled by severing the clipboard connection in the workflow).
 
 **sly finish _{filter}_** - List Current items, `return` to move item to Completed, `alt+return` to view in browser
 

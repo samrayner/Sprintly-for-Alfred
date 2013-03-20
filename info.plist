@@ -565,6 +565,50 @@ load 'run_command.rb'</string>
 			<string>0341B9D7-0FA8-49EC-8FC8-26FE0E802BEF</string>
 		</dict>
 	</array>
+	<key>readme</key>
+	<string>Sprint.ly Workflow for Alfred 2
+http://samrayner.com/alfred-sprintly
+
+
+Installation
+------------
+
+Requirements: Ruby 1.9.x must be installed with RVM (https://rvm.io/).
+
+sly setup {email} {api_key}
+Your API key can be obtained from https://sprint.ly/account/profile/
+
+
+Commands
+--------
+
+sly product {filter}
+List products, `return` to switch active product, `alt+return` to view in browser
+
+sly list {status} {@name} {filter}
+List items (optionally filtered by person), `return` to view in browser
+
+sly start {filter}
+List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git branch` command for the item to the clipboard (can be disabled by severing the clipboard connection in the workflow).
+
+sly finish {filter}
+List Current items, `return` to move item to Completed, `alt+return` to view in browser
+
+sly new {type} {size} {title} {#tag} {@name}
+Add a new item to Backlog (hit `return` when done)
+
+sly item #{id}
+Preview an item by ID, `return` to view in browser
+
+
+Tips
+----
+
+`cmd+c` on a highlighted product or item will copy its #ID to the clipboard (useful for commit messages)
+
+Story titles can be entered shorthand as: aa user iw this st that
+
+`tab` has the same effect as `return`</string>
 	<key>uidata</key>
 	<dict>
 		<key>0341B9D7-0FA8-49EC-8FC8-26FE0E802BEF</key>
