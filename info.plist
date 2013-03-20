@@ -6,8 +6,27 @@
 	<string>com.samrayner.Sprintly</string>
 	<key>connections</key>
 	<dict>
+		<key>572546EF-D4A9-4523-B063-960AB9AA3C26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0341B9D7-0FA8-49EC-8FC8-26FE0E802BEF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
@@ -302,13 +321,19 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>cachescript</key>
-				<false/>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "git_branch"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9D28E664-A03A-4FAF-B371-213128DEA302</string>
+			<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -526,23 +551,46 @@ load 'run_command.rb'</string>
 			<key>uid</key>
 			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>0341B9D7-0FA8-49EC-8FC8-26FE0E802BEF</string>
+		</dict>
 	</array>
 	<key>uidata</key>
 	<dict>
+		<key>0341B9D7-0FA8-49EC-8FC8-26FE0E802BEF</key>
+		<dict>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
 		<key>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</key>
 		<dict>
 			<key>ypos</key>
 			<real>210</real>
 		</dict>
-		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<key>572546EF-D4A9-4523-B063-960AB9AA3C26</key>
 		<dict>
 			<key>ypos</key>
 			<real>410</real>
 		</dict>
+		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
+		</dict>
 		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
 		<dict>
 			<key>ypos</key>
-			<real>410</real>
+			<real>510</real>
 		</dict>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<dict>
@@ -557,22 +605,17 @@ load 'run_command.rb'</string>
 		<key>95D043B1-6F35-4DD0-A449-379C47F588D1</key>
 		<dict>
 			<key>ypos</key>
-			<real>510</real>
+			<real>610</real>
 		</dict>
 		<key>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>9D28E664-A03A-4FAF-B371-213128DEA302</key>
-		<dict>
-			<key>ypos</key>
-			<real>730</real>
-		</dict>
 		<key>9E24F479-497F-4B26-A8A8-3BCF2554E43B</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>710</real>
 		</dict>
 		<key>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</key>
 		<dict>
@@ -592,7 +635,7 @@ load 'run_command.rb'</string>
 		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>710</real>
 		</dict>
 		<key>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</key>
 		<dict>
@@ -602,7 +645,7 @@ load 'run_command.rb'</string>
 		<key>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>510</real>
+			<real>610</real>
 		</dict>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<dict>

@@ -17,6 +17,10 @@ class Sly::StoryItem < Sly::Item
     "#{prefixes[:who]} #{@who}, #{prefixes[:what]} #{@what} #{prefixes[:why]} #{@why}"
   end
 
+  def slug
+    self.str_to_slug(self.what)
+  end
+
   def parse_title(title)
     #default values
     @who = "__"

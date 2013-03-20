@@ -31,6 +31,14 @@ class Sly::Item < Sly::Object
     value
   end
 
+  def str_to_slug(str)
+    str.strip.downcase.gsub(/(&|&amp;)/, ' and ').gsub(/[\s\/\\]/, '-').gsub(/[^\w-]/, '').gsub(/[-]{2,}/, '-')
+  end
+
+  def slug
+    self.str_to_slug(self.title)
+  end
+
   def alfred_result
     subtitle = "Assigned to #{@assigned_to.full_name}  "
 
