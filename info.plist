@@ -551,7 +551,7 @@ http://samrayner.com/alfred-sprintly
 Installation
 ------------
 
-Requirements: Ruby 1.9.x must be installed with RVM (https://rvm.io/).
+Requirements: Ruby &gt;= 1.9.x must be installed with RVM (https://rvm.io/) or rbenv (https://github.com/sstephenson/rbenv/).
 
 sly setup {email} {api_key}
 Your API key can be obtained from https://sprint.ly/account/profile/

@@ -3,7 +3,7 @@
 Installation
 ------------
 
-**Requirements:** Ruby 1.9.x must be installed with [RVM][].
+**Requirements:** Ruby >= 1.9.x must be installed with [RVM][] or [rbenv][].
 
 **sly setup {email} {api_key}** - Your API key can be obtained from <https://sprint.ly/account/profile/>
 
@@ -55,3 +55,4 @@ Story titles can be entered shorthand as: _**aa** user **iw** this **st** that_
 `tab` has the same effect as `return`
 
 [rvm]: https://rvm.io/
+[rbenv]: https://github.com/sstephenson/rbenv/
