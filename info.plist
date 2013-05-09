@@ -6,10 +6,38 @@
 	<string>com.samrayner.Sprintly</string>
 	<key>connections</key>
 	<dict>
+		<key>3229B626-1635-44CE-A6CA-78CD03D716F4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>55580E4E-B7FF-4499-8BD6-B523C47853B4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>572546EF-D4A9-4523-B063-960AB9AA3C26</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3229B626-1635-44CE-A6CA-78CD03D716F4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
@@ -152,12 +180,31 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>E3E286F1-0541-4FE5-88D7-7F1E737B13BF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 		<key>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E3E286F1-0541-4FE5-88D7-7F1E737B13BF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EA100F17-4372-455E-9B7E-C7CE3F041974</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -277,6 +324,23 @@ load 'run_command.rb'</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "switch_product"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -332,7 +396,7 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>COMMAND = "switch_product"
+				<string>COMMAND = "open_product_url"
 QUERY = "{query}"
 load 'run_command.rb'</string>
 				<key>type</key>
@@ -341,7 +405,7 @@ load 'run_command.rb'</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
+			<string>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -378,7 +442,7 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>COMMAND = "open_product_url"
+				<string>COMMAND = "tictoc_task"
 QUERY = "{query}"
 load 'run_command.rb'</string>
 				<key>type</key>
@@ -387,7 +451,22 @@ load 'run_command.rb'</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</string>
+			<string>3229B626-1635-44CE-A6CA-78CD03D716F4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>tell application "Tictoc" to start task "{query}"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>55580E4E-B7FF-4499-8BD6-B523C47853B4</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -405,6 +484,23 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "move_item"
+QUERY = "{query} current"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -441,8 +537,8 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>COMMAND = "move_item"
-QUERY = "{query} current"
+				<string>COMMAND = "open_item_url"
+QUERY = "{query}"
 load 'run_command.rb'</string>
 				<key>type</key>
 				<integer>2</integer>
@@ -450,7 +546,7 @@ load 'run_command.rb'</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
+			<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -478,23 +574,6 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>COMMAND = "open_item_url"
-QUERY = "{query}"
-load 'run_command.rb'</string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -541,6 +620,38 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>9E24F479-497F-4B26-A8A8-3BCF2554E43B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>COMMAND = "tictoc_task"
+QUERY = "{query}"
+load 'run_command.rb'</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E3E286F1-0541-4FE5-88D7-7F1E737B13BF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>tell application "Tictoc" to stop task "{query}"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>EA100F17-4372-455E-9B7E-C7CE3F041974</string>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -589,25 +700,35 @@ Story titles can be entered shorthand as: aa user iw this st that
 `tab` has the same effect as `return`</string>
 	<key>uidata</key>
 	<dict>
+		<key>3229B626-1635-44CE-A6CA-78CD03D716F4</key>
+		<dict>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
 		<key>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</key>
 		<dict>
 			<key>ypos</key>
 			<real>210</real>
 		</dict>
-		<key>572546EF-D4A9-4523-B063-960AB9AA3C26</key>
+		<key>55580E4E-B7FF-4499-8BD6-B523C47853B4</key>
 		<dict>
 			<key>ypos</key>
 			<real>410</real>
 		</dict>
-		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<key>572546EF-D4A9-4523-B063-960AB9AA3C26</key>
 		<dict>
 			<key>ypos</key>
 			<real>510</real>
 		</dict>
+		<key>663CF8A1-EE33-424C-B650-1DEB0927EBFA</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
 		<key>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</key>
 		<dict>
 			<key>ypos</key>
-			<real>510</real>
+			<real>610</real>
 		</dict>
 		<key>860297E8-9AB1-444A-94C9-70BD21D02341</key>
 		<dict>
@@ -622,7 +743,7 @@ Story titles can be entered shorthand as: aa user iw this st that
 		<key>95D043B1-6F35-4DD0-A449-379C47F588D1</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>710</real>
 		</dict>
 		<key>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</key>
 		<dict>
@@ -632,7 +753,7 @@ Story titles can be entered shorthand as: aa user iw this st that
 		<key>9E24F479-497F-4B26-A8A8-3BCF2554E43B</key>
 		<dict>
 			<key>ypos</key>
-			<real>710</real>
+			<real>810</real>
 		</dict>
 		<key>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</key>
 		<dict>
@@ -652,7 +773,7 @@ Story titles can be entered shorthand as: aa user iw this st that
 		<key>A848D7D3-1766-4232-9FA6-03D327C33572</key>
 		<dict>
 			<key>ypos</key>
-			<real>710</real>
+			<real>810</real>
 		</dict>
 		<key>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</key>
 		<dict>
@@ -662,7 +783,17 @@ Story titles can be entered shorthand as: aa user iw this st that
 		<key>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>710</real>
+		</dict>
+		<key>E3E286F1-0541-4FE5-88D7-7F1E737B13BF</key>
+		<dict>
+			<key>ypos</key>
+			<real>910</real>
+		</dict>
+		<key>EA100F17-4372-455E-9B7E-C7CE3F041974</key>
+		<dict>
+			<key>ypos</key>
+			<real>910</real>
 		</dict>
 		<key>F2B8DD59-F15D-4009-B012-3EC91145A3E7</key>
 		<dict>
