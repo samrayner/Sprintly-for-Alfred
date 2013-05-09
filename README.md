@@ -18,9 +18,9 @@ _{bar}_ = optional argument
 
 **sly list {status} _{@name}_ _{filter}_** - List items (optionally filtered by person), `return` to view in browser
 
-**sly start _{filter}_** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git branch` command for the item to the clipboard.
+**sly start _{filter}_** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git branch` command for the item to the clipboard and starts a [TicToc][] task if TicToc is running.
 
-**sly finish _{filter}_** - List Current items, `return` to move item to Completed, `alt+return` to view in browser
+**sly finish _{filter}_** - List Current items, `return` to move item to Completed, `alt+return` to view in browser. Also stops the TicToc task for the item if one was started.
 
 **sly new {type} _{size}_ {title} _{#tag}_ _{@name}_** - Add a new item to Backlog (hit `return` when done)
 
@@ -56,3 +56,4 @@ Story titles can be entered shorthand as: _**aa** user **iw** this **st** that_
 
 [rvm]: https://rvm.io/
 [rbenv]: https://github.com/sstephenson/rbenv/
+[tictoc]: http://overcommitted.com/tictoc/
