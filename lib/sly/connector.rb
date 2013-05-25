@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'openssl'
 
 class Sly::Connector
   attr :api_url, :config

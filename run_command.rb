@@ -14,5 +14,6 @@ ruby_path = ruby_exec_path("rvm")
 ruby_path = ruby_exec_path("rbenv") unless ruby_path.length
 ruby_path = "ruby" unless ruby_path.length
 
-output = `#{ruby_path} "commands/#{COMMAND}.rb" "#{QUERY}"`
+parent_dir = File.expand_path(File.dirname(__FILE__))
+output = `#{ruby_path} "#{parent_dir}/commands/#{COMMAND}.rb" "#{QUERY}"`
 puts output unless output.empty?
