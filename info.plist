@@ -238,7 +238,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Sprint.ly</string>
+	<string>Sprintly</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -251,7 +251,7 @@
 				<key>subtext</key>
 				<string>Required arguments: &lt;email&gt; &lt;api_key&gt;</string>
 				<key>text</key>
-				<string>Set Sprint.ly Email and API Key</string>
+				<string>Set Sprintly Email and API Key</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -259,6 +259,8 @@
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>9B17F835-DC9E-4E07-B11E-A7B06639D2D4</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -276,6 +278,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>9371B276-809C-43E7-AC8E-9308F699FDF4</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -293,7 +297,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Use format: story s As a user, I want this so that this #tag @sam</string>
 				<key>title</key>
-				<string>Add a New Sprint.ly Item</string>
+				<string>Add a New Sprintly Item</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -303,6 +307,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>A0C0D92C-2BCE-4BA0-8D52-F83254B29506</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -320,6 +326,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>A1A8C844-E445-4237-A32E-D7F0CEB26F37</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -337,6 +345,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>860297E8-9AB1-444A-94C9-70BD21D02341</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -354,12 +364,14 @@ load 'run_command.rb'</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Sprint.ly</string>
+				<string>Sprintly</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>4A1F1B3F-A822-488D-BFC1-DBC875F2E5F9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -379,7 +391,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>What do you want to work on?</string>
 				<key>title</key>
-				<string>Switch Sprint.ly Product</string>
+				<string>Switch Sprintly Product</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -389,6 +401,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>F2B8DD59-F15D-4009-B012-3EC91145A3E7</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -406,6 +420,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B6D6068E-B381-4ECA-9087-3B0BC80C0DFD</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -425,7 +441,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Preview an item, hit return to view in browser</string>
 				<key>title</key>
-				<string>Get a Sprint.ly Item by ID</string>
+				<string>Get a Sprintly Item by ID</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -435,6 +451,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>A5ABA5DC-6451-4FED-B8A7-AD113D8374AC</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -452,6 +470,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>3229B626-1635-44CE-A6CA-78CD03D716F4</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -467,6 +487,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
 			<string>55580E4E-B7FF-4499-8BD6-B523C47853B4</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -484,6 +506,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -501,6 +525,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>769A2111-E4B2-47B3-BB87-FBEEC9FB40F2</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -520,7 +546,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Move an item from Backlog to Current</string>
 				<key>title</key>
-				<string>Start an Item From Sprint.ly Backlog</string>
+				<string>Start an Item From Sprintly Backlog</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -530,6 +556,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>663CF8A1-EE33-424C-B650-1DEB0927EBFA</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -547,6 +575,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -564,7 +594,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Get items from Backlog, Current, Completed or Accepted</string>
 				<key>title</key>
-				<string>List Sprint.ly Items</string>
+				<string>List Sprintly Items</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -574,6 +604,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>BD5A6A85-BD7F-4FE4-A788-C0E9FECB3FFB</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -593,7 +625,7 @@ load 'run_command.rb'</string>
 				<key>subtext</key>
 				<string>Move an item from Current to Completed</string>
 				<key>title</key>
-				<string>Finish a Current Sprint.ly Item</string>
+				<string>Finish a Current Sprintly Item</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -603,6 +635,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>A848D7D3-1766-4232-9FA6-03D327C33572</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -620,6 +654,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>9E24F479-497F-4B26-A8A8-3BCF2554E43B</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -637,6 +673,8 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>E3E286F1-0541-4FE5-88D7-7F1E737B13BF</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -652,10 +690,12 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
 			<string>EA100F17-4372-455E-9B7E-C7CE3F041974</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Sprint.ly Workflow for Alfred 2
+	<string>Sprintly Workflow for Alfred 2
 http://samrayner.com/alfred-sprintly
 
 
