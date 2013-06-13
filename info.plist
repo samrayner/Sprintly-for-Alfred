@@ -479,7 +479,7 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>tell application "Tictoc" to start task "{query}"</string>
+				<string>if application "Tictoc" is running then	tell application "Tictoc" to start task "{query}"end if</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -682,7 +682,7 @@ load 'run_command.rb'</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>tell application "Tictoc" to stop task "{query}"</string>
+				<string>if application "Tictoc" is running then	tell application "Tictoc" to stop task "{query}"end if</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
