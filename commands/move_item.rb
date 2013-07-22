@@ -11,12 +11,7 @@ end
 matches = QUERY.match(/^\#(?<id>\d+)\s+(?<status>someday|backlog|current|completed|accepted)/i)
 
 if matches
-  if matches[:status] == "someday"
-    attributes = {status: "backlog", archived: true}
-  else
-    attributes = {status: Sly::Interface.api_term(matches[:status]), archived: false}
-  end
-
+  attributes = {status: Sly::Interface.api_term(matches[:status])}
   sly.update_item(matches[:id], attributes)
   puts "Moved item ##{matches[:id]} to #{matches[:status].capitalize}"
 else

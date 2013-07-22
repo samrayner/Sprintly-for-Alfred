@@ -14,12 +14,7 @@ options = []
 valid_args.each do |arg|
   #full argument typed - show results
   if QUERY.match(/^#{arg}/)
-    if arg == "someday"
-      filters = {status:"backlog", archived:true}
-    else
-      filters = {status:Sly::Interface.api_term(arg)}
-    end
-
+    filters = {status:Sly::Interface.api_term(arg)}
     options = sly.items(filters, QUERY.sub(/^#{arg}\s*/, ""))
     break
   #partial argument typed - filter options
