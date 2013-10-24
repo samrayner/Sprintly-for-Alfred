@@ -1,9 +1,9 @@
-#Sprintly Workflow for Alfred 2 - [Download](https://github.com/samrayner/Sprintly-for-Alfred/releases/download/v1.0.1/Sprintly.alfredworkflow)
+#Sprintly Workflow for Alfred 2 - [Download](https://github.com/samrayner/Sprintly-for-Alfred/releases/download/v1.0.2/Sprintly.alfredworkflow)
 
 Installation
 ------------
 
-**Requirements:** Ruby >= 1.9.x must be installed with [RVM][] or [rbenv][].
+**Requirements:** System Ruby must be >= 1.9.x
 
 **sly setup {email} {api_key}** - Your API key can be obtained from <https://sprint.ly/account/profile/>
 
