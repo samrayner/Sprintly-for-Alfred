@@ -2,17 +2,25 @@ class Sly::Item < Sly::Object
   attr_accessor :status, :product, :description, :tags, :last_modified
   attr_accessor :number, :archived, :title, :short_url, :created_at
   attr_accessor :created_by, :score, :assigned_to, :type, :progress
+  attr_accessor :parent, :index
 
   def initialize(attributes={})
     super(attributes)
     @score = @score.upcase if @score
     @tags = [] unless @tags
+
+    if @parent
+      @parent = Sly::Item.new_typed(@parent)
+      @index = "#{@parent.number}.#{@number}"
+    else
+      @index = @number.to_s
+    end
   end
 
   def self.new_typed(attributes={})
     type = self.hash_value(attributes, :type)
-    
-    if type 
+
+    if type
       Sly::const_get("#{type.capitalize}Item").new(attributes)
     else
       self.new(attributes)
@@ -31,6 +39,12 @@ class Sly::Item < Sly::Object
     value
   end
 
+  def ==(item)
+    return false unless item
+    self.number == item.number
+  end
+  alias_method :eql?, :==
+
   def str_to_slug(str)
     str.strip.downcase.gsub(/(&|&amp;)/, ' and ').gsub(/[\s\/\\]/, '-').gsub(/[^\w-]/, '').gsub(/[-]{2,}/, '-')
   end
@@ -45,6 +59,6 @@ class Sly::Item < Sly::Object
     @tags.each { |tag| subtitle << " #"+tag }
 
     icon = "images/#{@type}-#{@score}.png".downcase
-    Sly::WorkflowUtils.item(@number, "#"+@number.to_s, self.title, subtitle, icon)
+    Sly::WorkflowUtils.item("#"+@number.to_s, self.title, subtitle, icon)
   end
 end

@@ -43,15 +43,16 @@ class Sly::Interface
     #JSON error message returned
     return [] unless people.kind_of?(Array)
 
-    #convert to objects
     people.map! { |person| Sly::Person.new(person) }
 
     #filter by query
-    people.select do |person| 
-      query.empty? || 
+    people.select! do |person|
+      query.empty? ||
       person.full_name.downcase.include?(query.downcase) ||
       (query.downcase == "me" && person.email == @connector.config.email)
     end
+
+    people.sort_by { |person| [person.last_name, person.first_name] }
   end
 
   def products(query="")
@@ -60,11 +61,12 @@ class Sly::Interface
     #JSON error message returned
     return [] unless products.kind_of?(Array)
 
-    #convert to objects
     products.map! { |product| Sly::Product.new(product) }
 
     #filter by query
-    products.select { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
+    products.select! { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
+
+    products.sort_by { |product| product.name }
   end
 
   def items(filters={}, query="")
@@ -73,7 +75,6 @@ class Sly::Interface
     #JSON error message returned
     return [] unless items.kind_of?(Array)
 
-    #convert to appropriate objects
     items.map! { |item| Sly::Item.new_typed(item) }
 
     person_filter = query.match(/\@([^\s]*)/)
@@ -84,14 +85,24 @@ class Sly::Interface
     end
 
     #filter by person
-    items.select! do |item| 
-      person_filter.to_s.empty? || 
+    items.select! do |item|
+      person_filter.to_s.empty? ||
       item.assigned_to.full_name.downcase.include?(person_filter) ||
       (person_filter == "me" && item.assigned_to.email == @connector.config.email)
     end
 
     #filter by query
-    items.select { |item| query.empty? || item.title.downcase.include?(query.downcase) }
+    items.select! { |item| query.empty? || item.title.downcase.include?(query.downcase) }
+
+    #add arrow to title of sub-items
+    items.map! do |item|
+      if items.member?(item.parent)
+        item.title = [0x21B3].pack("U")+" "+item.title
+      end
+      item
+    end
+
+    items.sort_by { |item| item.index }
   end
 
   def product(id)

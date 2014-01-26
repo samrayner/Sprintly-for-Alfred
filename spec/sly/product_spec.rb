@@ -8,7 +8,6 @@ describe Sly::Product, integration: true do
   describe :alfred_result do
     it "returns valid alfred search result for product" do
       alfred_result = @product.alfred_result
-      alfred_result[:uid].should == @product.id
       alfred_result[:arg].should == "#"+@product.id.to_s
       alfred_result[:title].should == @product.name
     end

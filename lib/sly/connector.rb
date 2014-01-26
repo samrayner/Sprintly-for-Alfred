@@ -31,15 +31,15 @@ class Sly::Connector
 
     response = Net::HTTP.start(
                  uri.host,
-                 uri.port, 
-                 :use_ssl => (uri.scheme == 'https'), 
+                 uri.port,
+                 :use_ssl => (uri.scheme == 'https'),
                  :verify_mode => OpenSSL::SSL::VERIFY_NONE
                ) do |https|
       https.request(request)
     end
 
     if(response.class.body_permitted?)
-      begin 
+      begin
         JSON(response.body)
       rescue JSON::ParserError
         false
@@ -70,6 +70,7 @@ class Sly::Connector
   end
 
   def items(filters={})
+    filters[:children] = true
     authenticated_request(@api_url+"/products/#{@config.product_id}/items.json", filters)
   end
 

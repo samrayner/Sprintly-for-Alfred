@@ -1,4 +1,4 @@
-#Sprintly Workflow for Alfred 2 - [Download](https://github.com/samrayner/Sprintly-for-Alfred/releases/download/v1.0.2/Sprintly.alfredworkflow)
+#Sprintly Workflow for Alfred 2 - [Download](https://github.com/samrayner/Sprintly-for-Alfred/releases/download/v1.0.3/Sprintly.alfredworkflow)
 
 Installation
 ------------

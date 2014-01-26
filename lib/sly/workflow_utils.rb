@@ -21,13 +21,13 @@ class Sly::WorkflowUtils
     doc.to_s
   end
 
-  def self.item(uid, arg, title, subtitle, icon="icon.png", valid="yes", autocomplete="")
+  def self.item(arg, title, subtitle, icon="icon.png", uid="", valid="yes", autocomplete="")
     return {
-      uid:uid, 
       arg:arg,
       title:title,
       subtitle:subtitle,
       icon:icon,
+      uid:uid,
       valid:valid,
       autocomplete:autocomplete
     }
@@ -35,11 +35,11 @@ class Sly::WorkflowUtils
 
   def self.autocomplete_item(title, subtitle, autocomplete, icon="icon.png")
     return {
-      uid:Time.now.to_f.to_s.sub(/\./, ""),
       arg:"",
       title:title,
       subtitle:subtitle,
       icon:icon,
+      uid:"",
       valid:"no",
       autocomplete:autocomplete
     }
