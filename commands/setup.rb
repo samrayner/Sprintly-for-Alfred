@@ -8,7 +8,7 @@ unless credentials.count == 2
   exit
 end
 
-config = Sly::Config.new({email:credentials[0], api_key:credentials[1], product_id:0000})
+config = Sly::Config.new(email: credentials[0], api_key: credentials[1], product_id: 0000)
 connector = Sly::Connector.new(config)
 
 unless connector.authorized?

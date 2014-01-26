@@ -17,6 +17,40 @@ class Sly::Item < Sly::Object
     end
   end
 
+  def self.types
+    ["story", "task", "defect", "test"]
+  end
+
+  def self.defaults
+    {
+      status: "backlog",
+      type: "task",
+      title: "Preview",
+      score: "~",
+      tags: [],
+      assigned_to: ""
+    }
+  end
+
+  def self.scores
+    {
+      s:  "small",
+      m:  "medium",
+      l:  "large",
+      xl: "extra-large"
+    }
+  end
+
+  def self.creation_regex
+    /^
+      (?<type>story|task|defect|test)
+      (?:\s+(?<score>s|m|l|xl))?
+      (?:\s+(?<title>[^\#\@]+))?
+      (?<tags>(?:\s+\#[^\#\@]*\s*)+\s*)?
+      (?:\@(?<assigned_to>[\w]*))?
+    $/ix
+  end
+
   def self.new_typed(attributes={})
     type = self.hash_value(attributes, :type)
 
@@ -60,5 +94,17 @@ class Sly::Item < Sly::Object
 
     icon = "images/#{@type}-#{@score}.png".downcase
     Sly::WorkflowUtils.item("#"+@number.to_s, self.title, subtitle, icon)
+  end
+
+  def git_branch
+    type = (self.type == "story") ? "feature" : self.type
+    slug = self.slug
+
+    if(slug.length > 50)
+      truncate_to = self.slug.index("-", 40)
+      slug = self.slug[0,truncate_to]
+    end
+
+    "git checkout -b #{type}/#{self.number}-#{slug}"
   end
 end

@@ -13,6 +13,15 @@ class Sly::Interface
     Sly::API_DICTIONARY.fetch(term, term)
   end
 
+  def self.new_if_config
+    begin
+      sly = Sly::Interface.new
+    rescue Sly::ConfigFileMissingError => e
+      puts Sly::WorkflowUtils.error_notification(e)
+      exit
+    end
+  end
+
   def initialize(connector=false)
     @connector = !connector ? Sly::Connector.new : connector
   end

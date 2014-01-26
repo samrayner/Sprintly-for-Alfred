@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'JSON'
 
 describe Sly::Object, integration: true do
-  describe :to_json do
+  describe '#to_json' do
     it "returns valid json" do
       json = Sly::Person.new({id:3, first_name:"Sam"}).to_json
       JSON.parse(json)
