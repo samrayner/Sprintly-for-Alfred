@@ -2,40 +2,15 @@ require 'cgi'
 
 QUERY = ARGV[0].to_s.strip
 require_relative "../lib/sly"
+sly = Sly::Interface.new_if_config
 
-begin
-  sly = Sly::Interface.new
-rescue Sly::ConfigFileMissingError => e
-  puts Sly::WorkflowUtils.results_feed([Sly::WorkflowUtils.error_item(e)])
-  exit
-end
-
-regex = /^
-  (?<type>story|task|defect|test)
-  (?:\s+(?<score>s|m|l|xl))?
-  (?:\s+(?<title>[^\#\@]+))?
-  (?<tags>(?:\s+\#[^\#\@]*\s*)+\s*)?
-  (?:\@(?<assigned_to>[\w]*))?
-$/ix
-
-matches = regex.match(QUERY)
-
-defaults = {
-  status: "backlog",
-  type: "task",
-  title: "Preview",
-  score: "~",
-  tags: [],
-  assigned_to: ""
-}
-
-types = ["story", "task", "defect", "test"]
-scores = {s:"small", m:"medium", l:"large", xl:"extra-large"}
+matches = Sly::Item.creation_regex.match(QUERY)
 options = []
 
 if matches
-  item = defaults.dup
-  item.each_key do |key| 
+  #fall back to defaults
+  item = Sly::Item.defaults.dup
+  item.each_key do |key|
     if matches.names.include?(key.to_s) && matches[key]
       item[key] = matches[key].strip
     end
@@ -44,8 +19,8 @@ if matches
   #autocomplete score
   if QUERY.match(/^#{item[:type]} ?$/i)
     options = []
-    scores.each_key do |score|
-      options << Sly::WorkflowUtils.autocomplete_item(scores[score].capitalize, "", "#{item[:type]} #{score} ", "images/#{item[:type]}-#{score}.png")
+    Sly::Item.scores.each do |code, name|
+      options << Sly::WorkflowUtils.autocomplete_item(name.capitalize, "", "#{item[:type]} #{code} ", "images/#{item[:type]}-#{code}.png")
     end
     puts Sly::WorkflowUtils.results_feed(options)
     exit
@@ -71,7 +46,7 @@ if matches
   preview_item = Sly::Item.new_typed(item)
   result = preview_item.alfred_result
 
-  if item[:title] == defaults[:title]
+  if item[:title] == Sly::Item.defaults[:title]
     result[:autocomplete] = QUERY
     result[:valid] = "no"
   else
@@ -82,7 +57,7 @@ if matches
 
 #autocomplete type
 else
-  types.each do |type|
+  Sly::Item.types.each do |type|
     if QUERY.empty? || type.match(/^#{QUERY.downcase}/)
       options << Sly::WorkflowUtils.autocomplete_item(type.capitalize, "", type+" ", "images/#{type}-~.png")
     end

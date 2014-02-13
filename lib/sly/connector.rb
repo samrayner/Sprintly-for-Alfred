@@ -10,17 +10,19 @@ class Sly::Connector
     @config = !config ? Sly::Config.new : config
   end
 
+  def self.append_query_string(url, params)
+    url << "?"+URI.escape(params.collect{ |k,v| "#{k}=#{v}" }.join("&"))
+  end
+
   def authenticated_request(url, params={}, post=false)
     #always return maximum results
     params[:limit] = 100
 
-    if(!post && !params.empty?)
-      url << "?"+URI.escape(params.collect{|k,v| "#{k}=#{v}"}.join("&"))
-    end
+    self.class.append_query_string(url, params) unless post || params.empty?
 
     uri = URI.parse(url)
 
-    if(post)
+    if post
       request = Net::HTTP::Post.new(uri.request_uri)
       request.set_form_data(params)
     else
@@ -32,18 +34,12 @@ class Sly::Connector
     response = Net::HTTP.start(
                  uri.host,
                  uri.port,
-                 :use_ssl => (uri.scheme == 'https'),
-                 :verify_mode => OpenSSL::SSL::VERIFY_NONE
-               ) do |https|
-      https.request(request)
-    end
+                 use_ssl: (uri.scheme == 'https'),
+                 verify_mode: OpenSSL::SSL::VERIFY_NONE
+               ){ |https| https.request(request) }
 
-    if(response.class.body_permitted?)
-      begin
-        JSON(response.body)
-      rescue JSON::ParserError
-        false
-      end
+    if response.class.body_permitted?
+      JSON(response.body) rescue false
     else
       false
     end

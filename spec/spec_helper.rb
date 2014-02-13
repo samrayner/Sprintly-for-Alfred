@@ -1,3 +1,6 @@
+require 'factory_girl'
+FactoryGirl.find_definitions
+
 require 'simplecov'
 SimpleCov.start
 
@@ -21,4 +24,20 @@ def obj_attr_match(obj1, obj2)
   end
 
   true
+end
+
+def valid_config
+  Sly::Config.new(email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key'], product_id: ENV['sprintly_product_id'])
+end
+
+def invalid_config
+  Sly::Config.new(email: "incorrect_email", api_key: "incorrect_password", product_id: "incorrect_id")
+end
+
+def valid_connector
+  Sly::Connector.new(valid_config)
+end
+
+def invalid_connector
+  Sly::Connector.new(invalid_config)
 end

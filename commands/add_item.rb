@@ -3,13 +3,7 @@ require 'cgi'
 
 QUERY = ARGV[0].to_s.strip
 require_relative "../lib/sly"
-
-begin
-  sly = Sly::Interface.new
-rescue Sly::ConfigFileMissingError => e
-  puts Sly::WorkflowUtils.error_notification(e)
-  exit
-end
+sly = Sly::Interface.new_if_config
 
 attributes = JSON(CGI.unescape(QUERY))
 
