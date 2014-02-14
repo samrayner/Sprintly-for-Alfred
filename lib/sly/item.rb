@@ -84,12 +84,8 @@ class Sly::Item < Sly::Object
     "#{[0x21B3].pack('U')+' ' if self.parent}"+@title
   end
 
-  def str_to_slug(str)
-    str.strip.downcase.gsub(/(&|&amp;)/, ' and ').gsub(/[\s\/\\]/, '-').gsub(/[^\w-]/, '').gsub(/[-]{2,}/, '-')
-  end
-
   def slug
-    self.str_to_slug(self.title)
+    str_to_slug(self.title)
   end
 
   def alfred_result
@@ -111,5 +107,11 @@ class Sly::Item < Sly::Object
     end
 
     "git checkout -b #{type}/#{self.number}-#{slug}"
+  end
+
+  protected
+
+  def str_to_slug(str)
+    str.strip.downcase.gsub(/(&|&amp;)/, ' and ').gsub(/[\s\/\\]/, '-').gsub(/[^\w-]/, '').gsub(/[-]{2,}/, '-').gsub(/^-|-$/, '')
   end
 end

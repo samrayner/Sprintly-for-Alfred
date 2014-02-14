@@ -122,11 +122,11 @@ describe Sly::Connector do
     end
   end
 
-  describe '.append_query_string' do
+  describe '#append_query_string' do
     it "concats a hash into an encoded string and appends to the URL" do
       url = "http://example.com"
       params = { a: "b", "c" => :d }
-      Sly::Connector.append_query_string(url, params).should == "http://example.com?a=b&c=d"
+      connector.send(:append_query_string, url, params).should == "http://example.com?a=b&c=d"
     end
   end
 end

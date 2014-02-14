@@ -5,6 +5,6 @@ class Sly::Product < Sly::Object
 
   def alfred_result
     subtitle = "Created "+@created_at.strftime("%B %d, %Y")
-    Sly::WorkflowUtils.item("#"+@id.to_s, @name, subtitle)
+    Sly::WorkflowUtils.item("##{@id}", @name, subtitle)
   end
 end

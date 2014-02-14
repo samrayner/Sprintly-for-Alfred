@@ -10,15 +10,11 @@ class Sly::Connector
     @config = !config ? Sly::Config.new : config
   end
 
-  def self.append_query_string(url, params)
-    url << "?"+URI.escape(params.collect{ |k,v| "#{k}=#{v}" }.join("&"))
-  end
-
   def authenticated_request(url, params={}, post=false)
     #always return maximum results
     params[:limit] = 100
 
-    self.class.append_query_string(url, params) unless post || params.empty?
+    append_query_string(url, params) unless post || params.empty?
 
     uri = URI.parse(url)
 
@@ -80,5 +76,11 @@ class Sly::Connector
 
   def update_item(id, attributes)
     authenticated_request(@api_url+"/products/#{@config.product_id}/items/#{id}.json", attributes, true)
+  end
+
+  private
+
+  def append_query_string(url, params)
+    url << "?"+URI.escape(params.collect{ |k,v| "#{k}=#{v}" }.join("&"))
   end
 end

@@ -144,12 +144,8 @@ class Sly::Interface
   end
 
   def update_item(id, attributes)
-    raise "Attributes must be in a Hash" unless attributes.kind_of?(Hash)
-
     item_hash = @connector.item(id)
-
     item = Sly::Item.new_typed(item_hash)
-
     item.attr_from_hash!(attributes)
 
     #updated attributes, flattened

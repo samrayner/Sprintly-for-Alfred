@@ -2,11 +2,9 @@ require 'rexml/document'
 
 class Sly::WorkflowUtils
   def self.array_to_xml(array)
-    raise "Argument must be an Array" unless array.kind_of? Array
-
     doc = REXML::Document.new
     root = doc.add_element("items")
-    for entry in array
+    array.each do |entry|
       item = root.add_element("item")
       entry.each do |key, value|
         if [:uid, :arg, :valid, :autocomplete].include?(key)

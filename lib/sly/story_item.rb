@@ -2,7 +2,7 @@ class Sly::StoryItem < Sly::Item
   attr_accessor :who, :what, :why
 
   def title=(value)
-    self.parse_title(value)
+    parse_title(value)
   end
 
   def title
@@ -18,8 +18,10 @@ class Sly::StoryItem < Sly::Item
   end
 
   def slug
-    self.str_to_slug(self.what)
+    str_to_slug(self.what)
   end
+
+  private
 
   def parse_title(title)
     #default values
@@ -47,7 +49,7 @@ class Sly::StoryItem < Sly::Item
     matches = title.match(regex)
 
     if matches
-      matches.names.each do |name| 
+      matches.names.each do |name|
         value = matches[name].strip
         value.sub!(/,$/, "") if name == "who"
         self.send(name+"=", value) unless value == self.send(name)
