@@ -86,6 +86,9 @@ class Sly::Interface
 
     items.map! { |item| Sly::Item.new_typed(item) }
 
+    #reject orphaned items
+    items.reject! { |item| item.parent && !items.member?(item.parent) }
+
     person_filter = query.match(/\@([^\s]*)/)
 
     if person_filter
@@ -102,14 +105,6 @@ class Sly::Interface
 
     #filter by query
     items.select! { |item| query.empty? || item.title.downcase.include?(query.downcase) }
-
-    #add arrow to title of sub-items
-    items.map! do |item|
-      if items.member?(item.parent)
-        item.title = [0x21B3].pack("U")+" "+item.title
-      end
-      item
-    end
 
     items.sort_by { |item| item.index }
   end

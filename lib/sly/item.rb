@@ -79,6 +79,11 @@ class Sly::Item < Sly::Object
   end
   alias_method :eql?, :==
 
+  def title
+    #prefix with arrow for sub-items
+    "#{[0x21B3].pack('U')+' ' if self.parent}"+@title
+  end
+
   def str_to_slug(str)
     str.strip.downcase.gsub(/(&|&amp;)/, ' and ').gsub(/[\s\/\\]/, '-').gsub(/[^\w-]/, '').gsub(/[-]{2,}/, '-')
   end
