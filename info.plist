@@ -230,6 +230,25 @@
 				<string>View in browser</string>
 			</dict>
 		</array>
+		<key>FC8FE2E5-2D76-4EFD-A435-08DCD36E3112</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>95D043B1-6F35-4DD0-A449-379C47F588D1</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>View in browser</string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Sam Rayner</string>
@@ -498,7 +517,9 @@ load 'run_command.rb'</string>
 				<key>script</key>
 				<string>COMMAND = "git_branch"
 QUERY = "{query}"
-load 'run_command.rb'</string>
+load 'run_command.rb'
+
+puts "Git checkout copied to clipboard"</string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -506,6 +527,37 @@ load 'run_command.rb'</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>572546EF-D4A9-4523-B063-960AB9AA3C26</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>sly git</string>
+				<key>runningsubtext</key>
+				<string>Fetching Current items...</string>
+				<key>script</key>
+				<string>COMMAND = "list"
+QUERY = "current {query}"
+load 'run_command.rb'</string>
+				<key>subtext</key>
+				<string>Copies a git checkout command to the clipboard</string>
+				<key>title</key>
+				<string>Git Checkout a Current Sprintly Item</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FC8FE2E5-2D76-4EFD-A435-08DCD36E3112</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -702,32 +754,30 @@ http://terracoding.com/sprintly
 Installation
 ------------
 
-Requirements: Ruby &gt;= 1.9.x must be installed with RVM (https://rvm.io/) or rbenv (https://github.com/sstephenson/rbenv/).
+**Requirements:** System Ruby must be &gt;= 1.9.x
 
-sly setup {email} {api_key}
-Your API key can be obtained from https://sprint.ly/account/profile/
+**sly setup {email} {api_key}** - Your API key can be obtained from https://sprint.ly/account/profile/
 
 
 Commands
 --------
 
-sly product {filter}
-List products, `return` to switch active product, `alt+return` to view in browser
+{foo} = required argument   
+_{bar}_ = optional argument
 
-sly list {status} {@name} {filter}
-List items (optionally filtered by person), `return` to view in browser
+**sly product _{filter}_** - List products, `return` to switch active product, `alt+return` to view in browser
 
-sly start {filter}
-List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git branch` command for the item to the clipboard and starts a TicToc task if TicToc is running.
+**sly list {status} _{@name}_ _{filter}_** - List items (optionally filtered by person), `return` to view in browser
 
-sly finish {filter}
-List Current items, `return` to move item to Completed, `alt+return` to view in browser. Also stops the TicToc task for the item if one was started.
+**sly start _{filter}_** - List Backlog items, `return` to move item to Current, `alt+return` to view in browser. Also copies a `git checkout` command for the item to the clipboard and starts a TicToc task if TicToc is running.
 
-sly new {type} {size} {title} {#tag} {@name}
-Add a new item to Backlog (hit `return` when done)
+**sly finish _{filter}_** - List Current items, `return` to move item to Completed, `alt+return` to view in browser. Also stops the TicToc task for the item if one was started.
 
-sly item #{id}
-Preview an item by ID, `return` to view in browser
+**sly new {type} _{size}_ {title} _{#tag}_ _{@name}_** - Add a new item to Backlog (hit `return` when done)
+
+**sly item #{id}** - Preview an item by ID, `return` to view in browser
+
+**sly git _{filter}_** - List Current items, `return` to copy a `git checkout` command for the item to the clipboard, `alt+return` to view in browser
 
 
 Tips
@@ -735,7 +785,7 @@ Tips
 
 `cmd+c` on a highlighted product or item will copy its #ID to the clipboard (useful for commit messages)
 
-Story titles can be entered shorthand as: aa user iw this st that
+Story titles can be entered shorthand as: _**aa** user **iw** this **st** that_
 
 `tab` has the same effect as `return`</string>
 	<key>uidata</key>
@@ -839,6 +889,11 @@ Story titles can be entered shorthand as: aa user iw this st that
 		<dict>
 			<key>ypos</key>
 			<real>210</real>
+		</dict>
+		<key>FC8FE2E5-2D76-4EFD-A435-08DCD36E3112</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
