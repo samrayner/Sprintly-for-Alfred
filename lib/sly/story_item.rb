@@ -12,9 +12,9 @@ class Sly::StoryItem < Sly::Item
       why: "so that"
     }
 
-    prefixes[:who] << "n" if @who && ["a","e","i","o"].include?(@who[0,1])
+    prefixes[:who] << "n" if self.who && ["a","e","i","o"].member?(self.who[0,1])
 
-    "#{prefixes[:who]} #{@who}, #{prefixes[:what]} #{@what} #{prefixes[:why]} #{@why}"
+    "#{prefixes[:who]} #{self.who}, #{prefixes[:what]} #{self.what} #{prefixes[:why]} #{self.why}"
   end
 
   def slug

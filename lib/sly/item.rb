@@ -89,12 +89,12 @@ class Sly::Item < Sly::Object
   end
 
   def alfred_result
-    subtitle = "Assigned to #{@assigned_to.full_name}  "
+    subtitle = "Assigned to #{self.assigned_to.full_name}  "
 
-    @tags.each { |tag| subtitle << " #"+tag }
+    self.tags.each { |tag| subtitle << " #"+tag }
 
-    icon = "images/#{@type}-#{@score}.png".downcase
-    Sly::WorkflowUtils.item("#"+@number.to_s, self.title, subtitle, icon)
+    icon = "images/#{self.type}-#{self.score}.png".downcase
+    Sly::WorkflowUtils.item("#"+self.number.to_s, self.title, subtitle, icon)
   end
 
   def git_branch
@@ -107,6 +107,12 @@ class Sly::Item < Sly::Object
     end
 
     "git checkout -b #{type}/#{self.number}-#{slug}"
+  end
+
+  def to_flat_hash
+    hash = self.to_hash(true)
+    hash[:tags] = hash[:tags].join(",") if hash[:tags].is_a?(Array)
+    hash
   end
 
   protected

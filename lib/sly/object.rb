@@ -9,16 +9,14 @@ class Sly::Object
     end
 
     ["created_at", "last_login", "last_modified"].each do |attribute|
-        parse_attr(attribute) { |date| date.kind_of?(String) ? DateTime.iso8601(date) : DateTime.new }
+      parse_attr!(attribute) { |date| DateTime.iso8601(date) if date.kind_of?(String) }
     end
 
     ["assigned_to", "created_by"].each do |attribute|
-        parse_attr(attribute, {}) { |attributes| Sly::Person.new(attributes) }
+      parse_attr!(attribute, {}) { |attributes| Sly::Person.new(attributes) }
     end
 
-    ["product"].each do |attribute|
-        parse_attr(attribute, {}) { |attributes| Sly::Product.new(attributes) }
-    end
+    parse_attr!("product", {}) { |attributes| Sly::Product.new(attributes) }
   end
 
   def to_hash(flatten=false)
@@ -48,13 +46,14 @@ class Sly::Object
 
   private
 
-  def parse_attr(attribute, nil_value=nil, &block)
+  def parse_attr!(attribute, nil_value=nil, &block)
     if self.respond_to?(attribute+"=")
       value = self.send(attribute)
 
       unless value.kind_of?(Sly::Object)
-        value = nil_value if value == nil
-        self.send(attribute+"=", block.call(value))
+        value ||= nil_value
+        parsed_value = block.call(value)
+        self.send(attribute+"=", parsed_value) unless parsed_value.nil?
       end
     end
   end
