@@ -19,27 +19,27 @@ class Sly::WorkflowUtils
     doc.to_s
   end
 
-  def self.item(arg, title, subtitle, icon="icon.png", uid="", valid="yes", autocomplete="")
+  def self.item(arg, title, subtitle, icon="icon.png", valid="yes", autocomplete="")
     return {
-      arg:arg,
-      title:title,
-      subtitle:subtitle,
-      icon:icon,
-      uid:uid,
-      valid:valid,
-      autocomplete:autocomplete
+      arg: arg,
+      title: title,
+      subtitle: subtitle,
+      icon: icon,
+      uid: self.timestamp,
+      valid: valid,
+      autocomplete: autocomplete
     }
   end
 
   def self.autocomplete_item(title, subtitle, autocomplete, icon="icon.png")
     return {
-      arg:"",
-      title:title,
-      subtitle:subtitle,
-      icon:icon,
-      uid:"",
-      valid:"no",
-      autocomplete:autocomplete
+      arg: "",
+      title: title,
+      subtitle: subtitle,
+      icon: icon,
+      uid: self.timestamp,
+      valid: "no",
+      autocomplete: autocomplete
     }
   end
 
@@ -66,5 +66,9 @@ class Sly::WorkflowUtils
     end
 
     self.array_to_xml(items)
+  end
+
+  def self.timestamp
+    Time.now.to_f.to_s.sub(/\./, "")
   end
 end
