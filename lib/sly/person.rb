@@ -1,5 +1,10 @@
 class Sly::Person < Sly::Object
-  attr_accessor :id, :first_name, :last_name, :email, :created_at, :last_login
+  attr_accessor :id, :user, :first_name, :last_name, :email, :created_at, :last_login
+
+  def initialize(attributes={})
+    super(attributes)
+    @id = @user
+  end
 
   def full_name
     return "Nobody" unless self.first_name
