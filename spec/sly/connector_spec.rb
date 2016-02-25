@@ -12,19 +12,25 @@ describe Sly::Connector do
       { this: :that }
     end
 
+    before do
+      response = double(:response)
+      allow(response).to receive_message_chain(:class, :body_permitted?)
+      allow(Net::HTTP).to receive_messages(start: response)
+    end
+
     it "sets the limit param" do
       connector.authenticated_request(url, params)
-      params[:limit].should == 100
+      expect(params[:limit]).to eq(100)
     end
   end
 
   describe '#authorized?' do
     it "passes for a valid user" do
-      valid_connector.authorized?.should be_true
+      expect(valid_connector.authorized?).to be true
     end
 
     it "fails for an invalid user" do
-      invalid_connector.authorized?.should be_false
+      expect(invalid_connector.authorized?).to be false
     end
   end
 
@@ -34,7 +40,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/people.json")
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/people.json")
     end
   end
 
@@ -44,7 +50,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products.json")
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products.json")
     end
   end
 
@@ -54,7 +60,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{id}.json")
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{id}.json")
     end
   end
 
@@ -64,7 +70,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/people/#{id}.json")
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/people/#{id}.json")
     end
   end
 
@@ -74,12 +80,13 @@ describe Sly::Connector do
     end
 
     it "sets children parameter" do
+      allow(connector).to receive(:authenticated_request)
       connector.items(filters)
-      filters[:children].should be_true
+      expect(filters[:children]).to be true
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items.json", filters)
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items.json", filters)
       connector.items(filters)
     end
   end
@@ -90,7 +97,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items/#{id}.json")
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items/#{id}.json")
     end
   end
 
@@ -104,7 +111,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items.json", attributes, true)
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items.json", attributes, true)
     end
   end
 
@@ -118,7 +125,7 @@ describe Sly::Connector do
     end
 
     it "makes an authenticated API request" do
-      connector.should_receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items/#{id}.json", attributes, true)
+      expect(connector).to receive(:authenticated_request).with(api_url+"/products/#{config.product_id}/items/#{id}.json", attributes, true)
     end
   end
 
@@ -126,7 +133,7 @@ describe Sly::Connector do
     it "concats a hash into an encoded string and appends to the URL" do
       url = "http://example.com"
       params = { a: "b", "c" => :d }
-      connector.send(:append_query_string, url, params).should == "http://example.com?a=b&c=d"
+      expect(connector.send(:append_query_string, url, params)).to eq("http://example.com?a=b&c=d")
     end
   end
 end

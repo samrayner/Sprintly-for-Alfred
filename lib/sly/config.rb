@@ -22,7 +22,7 @@ class Sly::Config < Sly::Object
     file_path = Sly::CONFIG_FILE if file_path.empty?
 
     FileUtils.mkpath(File.dirname(file_path))
-    
+
     File.open(file_path, 'w') { |f| f.puts self.to_json }
   end
 

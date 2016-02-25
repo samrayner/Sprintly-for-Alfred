@@ -5,8 +5,7 @@ class Sly::Interface
   attr :connector
 
   def self.api_term(term)
-    key = Sly::API_DICTIONARY.key(term)
-    key ? key : term
+    Sly::API_DICTIONARY.key(term) || term
   end
 
   def self.common_term(term)
@@ -15,14 +14,14 @@ class Sly::Interface
 
   def self.new_if_config
     begin
-      sly = Sly::Interface.new
+      Sly::Interface.new
     rescue Sly::ConfigFileMissingError => e
       puts Sly::WorkflowUtils.error_notification(e)
       exit
     end
   end
 
-  def initialize(connector=false)
+  def initialize(connector=nil)
     @connector = !connector ? Sly::Connector.new : connector
   end
 
@@ -46,11 +45,27 @@ class Sly::Interface
     items
   end
 
-  def people(query="")
-    people = self.cache("people.json", query) { @connector.people }
+  def add_item(item)
+    attributes = item.to_flat_hash
+    self.connector.add_item(attributes)
+  end
 
-    #JSON error message returned
-    return [] unless people.kind_of?(Array)
+  def update_item(id, attributes)
+    item_hash = self.connector.item(id)
+    item = Sly::Item.new_typed(item_hash)
+    item.attr_from_hash!(attributes)
+
+    item_hash = item.to_flat_hash
+
+    #can't change type of item
+    item_hash.delete(:type)
+
+    self.connector.update_item(id, item_hash)
+  end
+
+  def people(query="")
+    people = self.cache("people.json", query) { self.connector.people }
+    return [] if error_object?(people)
 
     people.map! { |person| Sly::Person.new(person) }
 
@@ -58,31 +73,30 @@ class Sly::Interface
     people.select! do |person|
       query.empty? ||
       person.full_name.downcase.include?(query.downcase) ||
-      (query.downcase == "me" && person.email == @connector.config.email)
+      (query.downcase == "me" && person.email == self.connector.config.email)
     end
 
     people.sort_by { |person| [person.last_name, person.first_name] }
   end
 
   def products(query="")
-    products = self.cache("products.json", query) { @connector.products }
-
-    #JSON error message returned
-    return [] unless products.kind_of?(Array)
+    products = self.cache("products.json", query) { self.connector.products }
+    return [] if error_object?(products)
 
     products.map! { |product| Sly::Product.new(product) }
+
+    #reject archived products
+    products.reject! { |product| product.archived }
 
     #filter by query
     products.select! { |product| query.empty? || product.name.downcase.match(/^#{query.downcase}/) }
 
-    products.sort_by { |product| product.name }
+    products.sort_by(&:name)
   end
 
   def items(filters={}, query="")
-    items = self.cache("items.json", query) { @connector.items(filters) }
-
-    #JSON error message returned
-    return [] unless items.kind_of?(Array)
+    items = self.cache("items.json", query) { self.connector.items(filters) }
+    return [] if error_object?(items)
 
     items.map! { |item| Sly::Item.new_typed(item) }
 
@@ -100,61 +114,36 @@ class Sly::Interface
     items.select! do |item|
       person_filter.to_s.empty? ||
       item.assigned_to.full_name.downcase.include?(person_filter) ||
-      (person_filter == "me" && item.assigned_to.email == @connector.config.email)
+      (person_filter == "me" && item.assigned_to.email == self.connector.config.email)
     end
 
     #filter by query
     items.select! { |item| query.empty? || item.title.downcase.include?(query.downcase) }
 
-    items.sort_by { |item| item.index }
+    items.sort_by(&:index)
   end
 
   def product(id)
-    product = @connector.product(id)
-
-    #JSON errors have an error code
-    return nil if product.include?("code")
-
+    product = self.connector.product(id)
+    return nil if error_object?(product)
     Sly::Product.new(product)
   end
 
   def person(id)
-    person = @connector.person(id)
-
-    #JSON errors have an error code
-    return nil if person.include?("code")
-
+    person = self.connector.person(id)
+    return nil if error_object?(person)
     Sly::Person.new(person)
   end
 
   def item(id)
-    item = @connector.item(id)
-
-    #JSON errors have an error code
-    return nil if item.include?("code")
-
+    item = self.connector.item(id)
+    return nil if error_object?(item)
     Sly::Item.new_typed(item)
   end
 
-  def add_item(item)
-    attributes = item.to_hash(true)
-    attributes[:tags] = attributes[:tags].join(",")
+  private
 
-    @connector.add_item(attributes)
-  end
-
-  def update_item(id, attributes)
-    item_hash = @connector.item(id)
-    item = Sly::Item.new_typed(item_hash)
-    item.attr_from_hash!(attributes)
-
-    #updated attributes, flattened
-    item_hash = item.to_hash(true)
-    item_hash[:tags] = item_hash[:tags].join(",")
-
-    #can't change type of item
-    item_hash.delete(:type)
-
-    @connector.update_item(id, item_hash)
+  def error_object?(object)
+    object.include?("code")
   end
 end

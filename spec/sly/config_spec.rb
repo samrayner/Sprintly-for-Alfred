@@ -13,7 +13,7 @@ describe Sly::Config do
       after { Sly::Config.new }
 
       it "loads from the config file" do
-        File.should_receive(:open).with(Sly::CONFIG_FILE, 'r')
+        expect(File).to receive(:open).with(Sly::CONFIG_FILE, 'r')
       end
     end
 
@@ -21,7 +21,7 @@ describe Sly::Config do
       after { Sly::Config.new(email: "test@example.com") }
 
       it "does not load from config file" do
-        File.should_not_receive(:open)
+        expect(File).not_to receive(:open)
       end
     end
   end
@@ -33,9 +33,9 @@ describe Sly::Config do
 
     it "sets attributes correctly" do
       config.update!(attributes)
-      config.email.should == attributes[:email]
-      config.api_key.should == attributes[:api_key]
-      config.product_id.should == attributes[:product_id]
+      expect(config.email).to eq(attributes[:email])
+      expect(config.api_key).to eq(attributes[:api_key])
+      expect(config.product_id).to eq(attributes[:product_id])
     end
   end
 
@@ -45,7 +45,7 @@ describe Sly::Config do
 
     it "creates a file if one does not exist" do
       config.save(test_config_file)
-      File.exists?(test_config_file).should be_true
+      expect(File.exists?(test_config_file)).to be true
     end
   end
 
@@ -54,12 +54,12 @@ describe Sly::Config do
       config.save(test_config_file)
       blank_config = Sly::Config.new(email: nil, api_key: nil, product_id: nil)
       blank_config.load!(test_config_file)
-      obj_attr_match(config, blank_config).should be_true
+      expect(obj_attr_match(config, blank_config)).to be true
     end
 
     it "raises an error if a config file doesn't exist" do
       delete_test_config
-      lambda { config.load!(test_config_file) }.should raise_error(Sly::ConfigFileMissingError)
+      expect { config.load!(test_config_file) }.to raise_error(Sly::ConfigFileMissingError)
     end
   end
 end

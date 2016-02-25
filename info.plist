@@ -517,9 +517,7 @@ load 'run_command.rb'</string>
 				<key>script</key>
 				<string>COMMAND = "git_branch"
 QUERY = "{query}"
-load 'run_command.rb'
-
-puts "Git checkout copied to clipboard"</string>
+load 'run_command.rb'</string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>

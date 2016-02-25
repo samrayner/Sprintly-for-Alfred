@@ -26,6 +26,14 @@ def obj_attr_match(obj1, obj2)
   true
 end
 
+def fixture(filename)
+  IO.read(File.expand_path("../fixtures/#{filename}", __FILE__))
+end
+
+def json_fixture(name)
+  JSON.parse(fixture("#{name}.json"))
+end
+
 def valid_config
   Sly::Config.new(email: ENV["sprintly_email"], api_key: ENV['sprintly_api_key'], product_id: ENV['sprintly_product_id'])
 end

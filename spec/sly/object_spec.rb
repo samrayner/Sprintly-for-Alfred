@@ -1,20 +1,20 @@
 require 'spec_helper'
 require 'JSON'
 
-describe Sly::Object, integration: true do
+describe Sly::Object do
   describe '#to_json' do
+    let(:person) { Sly::Person.new(id: 3, first_name: "Sam") }
+
     it "returns valid json" do
-      json = Sly::Person.new({id:3, first_name:"Sam"}).to_json
+      json = person.to_json
       JSON.parse(json)
     end
 
     it "returns a reversable JSON object" do
-      obj = Sly::Person.new({id:3, first_name:"Sam"})
+      person_from_json = Sly::Person.new
+      person_from_json.attr_from_hash!(JSON.parse(person.to_json))
 
-      obj_from_json = Sly::Person.new
-      obj_from_json.attr_from_hash!(JSON(obj.to_json))
-
-      obj_attr_match(obj, obj_from_json).should be_true
+      expect(obj_attr_match(person, person_from_json)).to be true
     end
   end
 end

@@ -25,7 +25,7 @@ class Sly::Connector
       request = Net::HTTP::Get.new(uri.to_s)
     end
 
-    request.basic_auth(@config.email, @config.api_key)
+    request.basic_auth(self.config.email, self.config.api_key)
 
     response = Net::HTTP.start(
                  uri.host,
@@ -42,11 +42,11 @@ class Sly::Connector
   end
 
   def people
-    authenticated_request(@api_url+"/products/#{@config.product_id}/people.json")
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/people.json")
   end
 
   def products
-    authenticated_request(@api_url+"/products.json")
+    authenticated_request(self.api_url+"/products.json")
   end
 
   def authorized?
@@ -54,28 +54,28 @@ class Sly::Connector
   end
 
   def product(id)
-    authenticated_request(@api_url+"/products/#{id}.json")
+    authenticated_request(self.api_url+"/products/#{id}.json")
   end
 
   def person(id)
-    authenticated_request(@api_url+"/products/#{@config.product_id}/people/#{id}.json")
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/people/#{id}.json")
   end
 
   def items(filters={})
     filters[:children] = true
-    authenticated_request(@api_url+"/products/#{@config.product_id}/items.json", filters)
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/items.json", filters)
   end
 
   def item(id)
-    authenticated_request(@api_url+"/products/#{@config.product_id}/items/#{id}.json")
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/items/#{id}.json")
   end
 
   def add_item(attributes)
-    authenticated_request(@api_url+"/products/#{@config.product_id}/items.json", attributes, true)
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/items.json", attributes, true)
   end
 
   def update_item(id, attributes)
-    authenticated_request(@api_url+"/products/#{@config.product_id}/items/#{id}.json", attributes, true)
+    authenticated_request(self.api_url+"/products/#{self.config.product_id}/items/#{id}.json", attributes, true)
   end
 
   private
