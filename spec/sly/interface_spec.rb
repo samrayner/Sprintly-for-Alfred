@@ -128,14 +128,15 @@ describe Sly::Interface do
       })
     end
 
-    it "does not try to update the type" do
+    it "does not try to update the type or product" do
       expect(api.connector).to receive(:update_item).with(id, {
         number: id,
         score: "S",
         tags: "tag1,tag2"
       })
       api.update_item(id, {
-        type: "story"
+        type: "story",
+        product: Sly::Product.new
       })
     end
 

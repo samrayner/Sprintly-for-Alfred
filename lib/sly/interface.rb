@@ -57,8 +57,9 @@ class Sly::Interface
 
     item_hash = item.to_flat_hash
 
-    #can't change type of item
+    #can't change type or product of item
     item_hash.delete(:type)
+    item_hash.delete(:product)
 
     self.connector.update_item(id, item_hash)
   end
